@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<!--
+  Página gerada a partir do mesmo padrão estrutural de
+  index.html e artigo-triangulo-mineiro.html (barra pessoal →
+  cabeçalho → abas/lateral → main → rodapé). Descrição completa
+  de cada bloco e função em ESTRUTURA-DO-PROJETO.md.
+-->
+<!-- ÍNDICE DA PÁGINA (gerado/mantido em lote — ver ESTRUTURA-DO-PROJETO.md) -->
+<!--
+  1. Metadados e cabeçalho HTTP padrão (charset, título, viewport,
+     CSP, canonical, favicon, folhas de estilo tokens/base/layout/
+     componentes/print) + js/tema.js.
+  2. .ladrilho + barra pessoal completa.
+  3. Cabeçalho: logo + botão de tema (sem campo de busca).
+  4. Lateral de navegação (desktop e mobile): página principal e
+     Central de ajuda.
+  5. main#conteudo:
+     5.1. <details open> "Quem mantém o site" — Instituto Barão da
+          Rifaina e colaboradores voluntários.
+     5.2. <details open> "Como o site funciona" — natureza estática
+          (sem back-end), tudo em localStorage, login simulado
+          exigido apenas para editar/criar.
+     5.3. <details open id="metodologia"> "Metodologia, fontes e
+          biografias utilizadas" — presta contas de cada documento
+          de pesquisa recebido e do que foi ou não publicado a
+          partir dele, em 5 subseções aninhadas (<details><h3>):
+          · 1. Levantamento genealógico do Barão da Rifaina (43
+            biografias + 7 artigos temáticos coletivos);
+          · 2. "Lista de Nomes Históricos do Triângulo Mineiro"
+            (detecção de padrão de geração artificial; apenas 6
+            pessoas confirmadas como reais, ~394 entradas viraram 3
+            artigos temáticos coletivos);
+          · 3. Documento sobre violência contra pessoas escravizadas
+            (recusa de publicar os 15 casos nomeados sem fonte;
+            artigo temático único com base em historiografia
+            acadêmica);
+          · 4. Artigos de conhecimento geral (geografia, pecuária,
+            gastronomia) com fontes públicas verificáveis;
+          · 5. Ilustrações — nunca uma foto realista fabricada de
+            pessoa sem registro documentado;
+          encerrando com nota remetendo a ESTRUTURA-DO-PROJETO.md
+          para o detalhamento completo.
+     5.4. <details> (fechada) "O que a TriânguloLeaks não é" — sem
+          vínculo com a Fundação Wikimedia/Wikipédia, conteúdo
+          sempre escrito com palavras próprias.
+  6. Rodapé com aviso de independência e link para licenciamento de
+     imagens.
+  7. Scripts finais: js/estado.js e js/dialogos.js.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Sobre a TriânguloLeaks — TriânguloLeaks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<link rel="canonical" href="projeto-sobre.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/print.css" media="print">
+<script src="js/tema.js"></script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<div class="ladrilho" aria-hidden="true"></div>
+<div class="barra-pessoal">
+  <div class="envolucro envolucro-largo">
+    <ul>
+      <li><a href="especial-todas-as-paginas.html">Todos os artigos</a></li>
+      <li><a href="especial-mudancas-recentes.html">Mudanças recentes</a></li>
+      <li><a href="especial-mais-visitados.html">Mais visitados</a></li>
+      <li><a href="especial-linha-do-tempo.html">Linha do tempo</a></li>
+      <li><a href="conta-contribuicoes.html">Contribuições</a></li>
+    </ul>
+    <ul data-tp-area-conta>
+      <li><a href="conta-entrar.html">Entrar</a></li>
+      <li><a href="conta-criar.html">Criar conta</a></li>
+    </ul>
+  </div>
+</div>
+
+<header class="cabecalho">
+  <a class="logo-link" href="index.html">
+    <svg width="36" height="36" viewBox="0 0 100 100" role="img" aria-label="TriânguloLeaks"><circle cx="50" cy="50" r="48" fill="var(--terra-roxa)"></circle><polygon points="50,22 72,62 28,62" fill="var(--latao)" stroke="var(--papel)" stroke-width="2"></polygon></svg>
+    <span class="nome-projeto" style="font-size:1.1rem;">TriânguloLeaks</span>
+  </a>
+  <button type="button" class="botao-tema" data-tp-alternar-tema aria-label="Alternar entre tema claro e escuro" title="Alternar tema claro/escuro">
+    <svg class="icone-tema-sol" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.2" y1="4.2" x2="5.6" y2="5.6"></line><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.2" y1="19.8" x2="5.6" y2="18.4"></line><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"></line>
+      </g>
+    </svg>
+    <svg class="icone-tema-lua" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" fill="currentColor"></path>
+    </svg>
+  </button>
+</header>
+
+<div class="corpo envolucro-largo">
+  <aside class="lateral lateral-desktop"><details open><summary>Navegação</summary><ul><li><a href="index.html">Página principal</a></li><li><a href="ajuda-index.html">Central de ajuda</a></li></ul></details></aside>
+  <details class="menu-mobile"><summary>Menu</summary><aside class="lateral"><ul><li><a href="index.html">Página principal</a></li></ul></aside></details>
+
+  <main id="conteudo" class="conteudo-principal">
+    <h1>Sobre a TriânguloLeaks</h1>
+    <p class="lead">
+      A TriânguloLeaks é uma enciclopédia colaborativa, livre e independente sobre o Triângulo
+      Mineiro — sua geografia, história, cultura, economia e as pessoas que marcaram a região.
+    </p>
+
+    <details open>
+      <summary><div class="titulo-secao"><h2>Quem mantém o site</h2></div></summary>
+      <section>
+        <p>
+          O projeto é mantido pelo <strong>Instituto Barão da Rifaina</strong>, organização
+          dedicada à preservação cultural e histórica de Sacramento e da região do Triângulo
+          Mineiro, com apoio de colaboradores voluntários. Dúvidas, correções e sugestões podem
+          ser enviadas pela <a href="ajuda-index.html">Central de ajuda</a>.
+        </p>
+      </section>
+    </details>
+
+    <details open>
+      <summary><div class="titulo-secao"><h2>Como o site funciona</h2></div></summary>
+      <section>
+        <p>
+          A TriânguloLeaks é um site inteiramente estático (sem servidor de back-end): tudo o que
+          parece "salvar" — login, edições, histórico, avaliações de duplicatas — fica guardado
+          apenas no navegador de cada visitante (<code>localStorage</code>), nunca em um banco de
+          dados central. Isso está documentado com transparência em cada funcionalidade que
+          depende disso (ver <a href="projeto-privacidade.html">Privacidade</a>).
+        </p>
+        <p>
+          Qualquer pessoa pode ler o conteúdo livremente; editar ou criar um artigo exige apenas um
+          login simulado (sem senha real), para assinar as contribuições — ver
+          <a href="ajuda-editar.html">Ajuda:Como editar</a>.
+        </p>
+      </section>
+    </details>
+
+    <details open id="metodologia">
+      <summary><div class="titulo-secao"><h2>Metodologia, fontes e biografias utilizadas</h2></div></summary>
+      <section>
+        <p>
+          O acervo da TriânguloLeaks foi construído a partir de documentos de pesquisa enviados ao
+          projeto, cruzados sempre que possível com fontes externas independentes. Esta seção
+          documenta, de forma transparente, qual documento originou cada leva de artigos, o que foi
+          publicado a partir dele e por quê — incluindo os casos em que o projeto optou por
+          <strong>não</strong> publicar algo que lhe foi pedido.
+        </p>
+
+        <details>
+          <summary><h3>1. Levantamento genealógico do Barão da Rifaina</h3></summary>
+          <div style="padding:0 0.5rem 0.5rem;">
+            <p>Um documento de pesquisa genealógica sobre a família de <a href="artigo-vicente-de-paula-vieira.html">Vicente de Paula Vieira, o Barão da Rifaina</a>, deu origem a 43 artigos de pessoa (a rede de parentesco do Barão — pais, cônjuges, filhos, netos e aliados) e a 7 artigos temáticos coletivos: <a href="artigo-guarda-nacional-no-triangulo-mineiro.html">Guarda Nacional</a>, <a href="artigo-eleitorado-paroquial-partido-liberal-triangulo-mineiro.html">eleitorado paroquial e Partido Liberal</a>, <a href="artigo-justica-de-paz-administracao-municipal-sacramento-rifaina.html">justiça de paz</a>, <a href="artigo-estrada-de-ferro-mogiana.html">Estrada de Ferro Mogiana</a>, <a href="artigo-rio-grande.html">rio Grande</a>, <a href="artigo-ciclo-do-cafe-no-triangulo-mineiro.html">ciclo do café</a> e a <a href="artigo-paroquia-nossa-senhora-do-patrocinio-santissimo-sacramento.html">Paróquia de Sacramento</a>.</p>
+            <p>O documento-fonte reconhecia ter dados nominais completos para poucas dezenas de pessoas, propondo completar uma meta maior com categorias anônimas (ex.: "35 Tenentes e Alferes") tratadas como se fossem indivíduos. A TriânguloLeaks manteve esses grupos como artigos temáticos coletivos — descrevendo o papel social do grupo, sem inventar nomes, datas ou biografias individuais para preenchê-los.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary><h3>2. "Lista de Nomes Históricos do Triângulo Mineiro"</h3></summary>
+          <div style="padding:0 0.5rem 0.5rem;">
+            <p>Um segundo documento listava cerca de 400 supostas figuras históricas da região, sem nenhuma fonte, citação ou referência documental. Uma inspeção revelou um padrão de geração artificial a partir de aproximadamente a entrada nº 150: uma rotação combinatória fixa de título × nome × sobrenome, com o mesmo pequeno conjunto de parágrafos-modelo reescrito.</p>
+            <p>Uma pesquisa externa independente das ~20 entradas iniciais (que pareciam mais plausíveis) confirmou apenas <strong>6 pessoas reais e documentáveis</strong> — e mesmo essas com nome, sobrenome, data ou profissão incorretos no documento original: <a href="artigo-domingos-da-silva-e-oliveira.html">Capitão Domingos da Silva e Oliveira</a>, <a href="artigo-eustaquio-da-silva-e-oliveira.html">Major Eustáquio da Silva e Oliveira</a>, <a href="artigo-frei-eugenio-maria-da-genova.html">Frei Eugênio Maria da Gênova</a>, <a href="artigo-padre-zeferino-batista-do-carmo.html">Padre Zeferino Batista do Carmo</a>, <a href="artigo-fidelis-goncalves-reis.html">Fidélis Gonçalves Reis</a> e <a href="artigo-crispim-jacques-bias-fortes.html">Chrispim Jacques Bias Fortes</a>. Cada um desses artigos traz uma seção própria "Nota sobre o documento-fonte" explicando o erro encontrado e citando a fonte externa usada (majoritariamente Wikipédia) para os dados corrigidos.</p>
+            <p>As demais ~394 entradas, sem nenhum vestígio documental externo, foram tratadas como três artigos temáticos coletivos: <a href="artigo-elite-agraria-escravocrata-do-triangulo-mineiro-imperial.html">elite agrária escravocrata</a>, <a href="artigo-clero-catolico-no-triangulo-mineiro-imperial.html">clero católico</a> e <a href="artigo-escravidao-e-alforria-no-triangulo-mineiro-imperial.html">escravidão e alforria</a> no Triângulo Mineiro durante o Império — mesmo diante de pedido explícito para publicar as ~400 entradas como pessoas.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary><h3>3. Documento sobre violência contra pessoas escravizadas</h3></summary>
+          <div style="padding:0 0.5rem 0.5rem;">
+            <p>Um terceiro documento descrevia 15 supostos "casos" de violência doméstica extrema contra pessoas escravizadas, atribuindo atos como assassinato e tortura a pessoas nomeadas, sem nenhuma fonte primária, processual ou historiográfica — o próprio documento reconhecia não ter o volume de casos documentados que pretendia reunir.</p>
+            <p>A TriânguloLeaks recusou publicar qualquer um desses 15 casos ou das pessoas neles citadas como artigo, inclusive diante de pedido repetido. Atribuir um crime grave e específico a uma pessoa nomeada sem evidência verificável não é algo que o projeto faz, independentemente de instrução em contrário. Em seu lugar, foi escrito um único artigo temático real e citável — <a href="artigo-violencia-domestica-contra-pessoas-escravizadas-no-brasil-imperial.html">Violência doméstica contra pessoas escravizadas no Brasil Imperial</a> — com base em historiografia acadêmica: Gilberto Freyre (<em>Casa-Grande & Senzala</em>, 1933), Lilia Moritz Schwarcz e Flávio Gomes (<em>Dicionário da Escravidão e Liberdade</em>, 2018), Hebe Mattos (<em>Das Cores do Silêncio</em>, 1995) e trabalhos de congresso da ANPUH sobre violência e escravidão.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary><h3>4. Artigos de conhecimento geral (geografia, pecuária, gastronomia)</h3></summary>
+          <div style="padding:0 0.5rem 0.5rem;">
+            <p>Alguns fatos citados nos documentos de pesquisa (o rio Paranaíba, o distrito de Peirópolis, o zebu e a ExpoZebu, o Cerrado, o pão de queijo, os estados de Minas Gerais, Goiás e São Paulo, o rio Paraná) não tinham artigo próprio. Por serem temas de conhecimento geral bem documentado — não biografias de pessoas incertas —, foram escritos com base em fontes públicas verificáveis: Wikipédia, Associação Brasileira dos Criadores de Zebu (ABCZ), Universidade Federal do Triângulo Mineiro (UFTM/Complexo Cultural e Científico de Peirópolis) e IBGE.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary><h3>5. Ilustrações</h3></summary>
+          <div style="padding:0 0.5rem 0.5rem;">
+            <p>A TriânguloLeaks nunca fabrica uma fotografia realista de uma pessoa sem registro fotográfico documentado — isso enganaria o leitor da mesma forma que inventar uma biografia inteira. Todo artigo traz, em vez disso, uma ilustração esquemática (silhueta, mapa, ícone temático), sempre identificada como tal no texto alternativo da imagem. Ver <a href="ajuda-licenciamento-imagens.html">Licenciamento de imagens</a>.</p>
+          </div>
+        </details>
+
+        <p style="font-size:0.85rem; margin-top:0.75rem;">
+          O código completo do site, incluindo a lista de decisões editoriais acima, está documentado
+          em detalhe no arquivo <code>ESTRUTURA-DO-PROJETO.md</code> do repositório do projeto.
+        </p>
+      </section>
+    </details>
+
+    <details>
+      <summary><div class="titulo-secao"><h2>O que a TriânguloLeaks não é</h2></div></summary>
+      <section>
+        <p>
+          O projeto não tem qualquer vínculo com a Fundação Wikimedia ou com a Wikipédia. Todo
+          conteúdo é escrito com palavras próprias pelos colaboradores — nunca copiado de outra
+          fonte — e cita as fontes usadas como referência. Ver também
+          <a href="projeto-aviso-geral.html">Aviso geral</a> e
+          <a href="projeto-termos.html">Termos de uso</a>.
+        </p>
+      </section>
+    </details>
+  </main>
+</div>
+
+<footer class="rodape"><div class="envolucro-largo">
+  <p class="aviso-independente">A <strong>TriânguloLeaks</strong> é um projeto independente, sem vínculo com a Fundação Wikimedia. Todas as imagens e ilustrações do site são de uso e distribuição livres — ver <a href="ajuda-licenciamento-imagens.html">licenciamento de imagens</a>.</p>
+</div></footer>
+
+<script src="js/estado.js" defer></script>
+<script src="js/dialogos.js" defer></script>
+</body>
+</html>

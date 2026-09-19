@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!--
+  Página gerada a partir do mesmo padrão estrutural de
+  especial-mais-visitados.html e busca.html (barra pessoal →
+  cabeçalho → lateral → main → rodapé). Descrição completa de cada
+  bloco e função em ESTRUTURA-DO-PROJETO.md, §7-n.
+
+  "Especial:Linha do tempo" — deixa selecionar, entre os artigos do
+  índice (window.TP_INDICE, o mesmo do js/busca.js) que tenham data
+  de início/fim de evento, quais aparecem organizados automaticamente
+  em ordem cronológica numa linha do tempo horizontal, com marcação
+  lateral colorida por artigo (mesma cor na lista de seleção e na
+  barra da linha do tempo). Ver js/linha-do-tempo.js.
+-->
+<!-- ÍNDICE DA PÁGINA (gerado/mantido em lote — ver ESTRUTURA-DO-PROJETO.md) -->
+<!--
+  1. Metadados e cabeçalho HTTP padrão (inclui meta description
+     específica), CSP, canonical, favicon, folhas de estilo
+     tokens/base/layout/componentes/print e js/tema.js.
+  2. .ladrilho + barra pessoal completa (aria-current em "Linha do
+     tempo").
+  3. Cabeçalho: logo + campo de busca simples (sem <datalist> de
+     sugestão, ao contrário de busca.html/index.html) + botão de
+     tema.
+  4. Lateral de navegação (desktop e mobile): página principal e
+     Pesquisar.
+  5. main#conteudo:
+     5.1. tagline explicando o critério de inclusão (artigos com
+          anoInicio/anoFim no índice — biografias, instituições,
+          fatos e lugares) e nota sobre a integração com a busca
+          avançada (botão "Enviar resultados para a Linha do tempo"
+          em busca.html, via localStorage
+          "tp:linha-do-tempo-pendente").
+     5.2. Campo #linha-tempo-filtro — filtro por texto (título,
+          local ou categoria) sobre os itens com data.
+     5.3. #linha-tempo-status (role="status") — resumo textual da
+          seleção atual (quantidade e intervalo de anos).
+     5.4. "Linha do tempo" (#linha-tempo-visualizacao) — barra
+          horizontal desenhada por js/linha-do-tempo.js, com cada
+          artigo selecionado posicionado e dimensionado
+          proporcionalmente ao seu intervalo de anos dentro do
+          intervalo total selecionado.
+     5.5. "Artigos com data disponíveis": botão "Limpar seleção"
+          (#linha-tempo-limpar) e checklist de seleção
+          (#linha-tempo-lista-selecao) — cada item com uma caixa de
+          marcação e um quadrado de cor (mesma paleta fixa usada na
+          barra da linha do tempo, atribuída na ordem de seleção),
+          permitindo identificar de relance qual barra corresponde a
+          qual artigo; seleção persistida em localStorage.
+     5.6. <noscript> — alternativa via índice alfabético completo ou
+          infobox de cada artigo.
+  6. Rodapé com aviso de independência e link para licenciamento de
+     imagens.
+  7. Scripts finais: js/estado.js, js/indice.js e
+     js/linha-do-tempo.js.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Especial:Linha do tempo — TriânguloLeaks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Monte uma linha do tempo com os artigos da TriânguloLeaks, organizados automaticamente por data de início/fim de cada evento, pessoa ou local.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<link rel="canonical" href="especial-linha-do-tempo.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/print.css" media="print">
+<script src="js/tema.js"></script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<div class="ladrilho" aria-hidden="true"></div>
+<div class="barra-pessoal">
+  <div class="envolucro envolucro-largo">
+    <ul>
+      <li><a href="especial-todas-as-paginas.html">Todos os artigos</a></li>
+      <li><a href="especial-mudancas-recentes.html">Mudanças recentes</a></li>
+      <li><a href="especial-mais-visitados.html">Mais visitados</a></li>
+      <li><a href="especial-linha-do-tempo.html" aria-current="page">Linha do tempo</a></li>
+      <li><a href="conta-contribuicoes.html">Contribuições</a></li>
+    </ul>
+    <ul data-tp-area-conta>
+      <li><a href="conta-entrar.html">Entrar</a></li>
+      <li><a href="conta-criar.html">Criar conta</a></li>
+    </ul>
+  </div>
+</div>
+
+<header class="cabecalho">
+  <a class="logo-link" href="index.html">
+    <svg width="36" height="36" viewBox="0 0 100 100" role="img" aria-label="TriânguloLeaks"><circle cx="50" cy="50" r="48" fill="var(--terra-roxa)"></circle><polygon points="50,22 72,62 28,62" fill="var(--latao)" stroke="var(--papel)" stroke-width="2"></polygon></svg>
+    <span class="nome-projeto" style="font-size:1.1rem;">TriânguloLeaks</span>
+  </a>
+  <search role="search"><form class="busca-form" action="busca.html" method="get">
+    <label class="visualmente-oculto" for="q">Pesquisar</label>
+    <input type="search" id="q" name="search" autocomplete="off" enterkeyhint="search" placeholder="Pesquisar…">
+    <button type="submit" name="go" class="secundario">Ir</button>
+    <button type="submit">Pesquisar</button>
+  </form></search>
+  <button type="button" class="botao-tema" data-tp-alternar-tema aria-label="Alternar entre tema claro e escuro" title="Alternar tema claro/escuro">
+    <svg class="icone-tema-sol" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.2" y1="4.2" x2="5.6" y2="5.6"></line><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.2" y1="19.8" x2="5.6" y2="18.4"></line><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"></line>
+      </g>
+    </svg>
+    <svg class="icone-tema-lua" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" fill="currentColor"></path>
+    </svg>
+  </button>
+</header>
+
+<div class="corpo envolucro-largo">
+  <aside class="lateral lateral-desktop"><details open><summary>Navegação</summary><ul><li><a href="index.html">Página principal</a></li><li><a href="busca.html">Pesquisar</a></li></ul></details></aside>
+  <details class="menu-mobile"><summary>Menu</summary><aside class="lateral"><ul><li><a href="index.html">Página principal</a></li></ul></aside></details>
+
+  <main id="conteudo" class="conteudo-principal">
+    <h1>Especial:Linha do tempo</h1>
+    <p class="tagline">Monte uma linha do tempo com os artigos que tiverem data de início/fim registrada — biografias (nascimento–falecimento), instituições, fatos e lugares (fundação, existência de-até).</p>
+
+    <p style="font-size:0.85rem; color:var(--tinta-suave);">
+      Vinda da <a href="busca.html">busca avançada</a>? Um botão "Enviar resultados para a Linha do
+      tempo" ao lado dos resultados soma a lista atual à sua seleção aqui.
+    </p>
+
+    <div style="margin: 1rem 0;">
+      <label for="linha-tempo-filtro"><strong>Filtrar artigos com data</strong></label><br>
+      <input type="search" id="linha-tempo-filtro" placeholder="Filtrar por título, local ou categoria…" style="width:100%; max-width:28rem;" autocomplete="off">
+    </div>
+
+    <p id="linha-tempo-status" role="status" style="font-size:0.9rem; color:var(--tinta-suave);"></p>
+
+    <section aria-labelledby="titulo-visualizacao" style="margin-bottom:1.5rem;">
+      <h2 id="titulo-visualizacao">Linha do tempo</h2>
+      <div id="linha-tempo-visualizacao"></div>
+    </section>
+
+    <section aria-labelledby="titulo-selecao">
+      <div style="display:flex; align-items:baseline; justify-content:space-between; gap:1rem;">
+        <h2 id="titulo-selecao">Artigos com data disponíveis</h2>
+        <button type="button" id="linha-tempo-limpar" class="secundario" style="white-space:nowrap;">Limpar seleção</button>
+      </div>
+      <ul id="linha-tempo-lista-selecao" style="list-style:none; padding:0; max-height:22rem; overflow-y:auto; border:1px solid var(--borda); padding:0.5rem;"></ul>
+    </section>
+
+    <noscript>
+      <p>A linha do tempo interativa exige JavaScript. Sem ele, use o
+      <a href="especial-todas-as-paginas.html">índice alfabético completo</a> ou visite cada
+      artigo diretamente para ver suas datas na infobox.</p>
+    </noscript>
+  </main>
+</div>
+
+<footer class="rodape"><div class="envolucro-largo">
+  <p class="aviso-independente">A <strong>TriânguloLeaks</strong> é um projeto independente, sem vínculo com a Fundação Wikimedia. Todas as imagens e ilustrações do site são de uso e distribuição livres — ver <a href="ajuda-licenciamento-imagens.html">licenciamento de imagens</a>.</p>
+</div></footer>
+
+<script src="js/estado.js" defer></script>
+<script src="js/indice.js" defer></script>
+<script src="js/linha-do-tempo.js" defer></script>
+</body>
+</html>

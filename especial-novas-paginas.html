@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--
+  Página gerada a partir do mesmo padrão estrutural de
+  index.html e artigo-triangulo-mineiro.html (barra pessoal →
+  cabeçalho → abas/lateral → main → rodapé). Descrição completa
+  de cada bloco e função em ESTRUTURA-DO-PROJETO.md.
+
+  "Novas páginas": hub de criação de artigos, login exigido (mesmo
+  padrão #aviso-login-necessario / #area-editor de editar.html — ver
+  js/novas-paginas.js). Quem está logado digita um título, vê a
+  prévia do slug gerado e é encaminhado a editar.html?p=<slug>&novo=1,
+  onde o login volta a ser checado como segunda camada de proteção.
+  Também lista, como atalho, os "artigos pedidos" (links vermelhos já
+  existentes em outras páginas do site) que ainda não foram escritos.
+-->
+<!-- ÍNDICE DA PÁGINA (gerado/mantido em lote — ver ESTRUTURA-DO-PROJETO.md) -->
+<!--
+  1. Metadados e cabeçalho HTTP padrão (charset, título, viewport,
+     CSP, canonical, favicon, folhas de estilo tokens/base/layout/
+     componentes/print) + js/tema.js.
+  2. .ladrilho + barra pessoal completa.
+  3. Cabeçalho: logo + botão de tema (sem campo de busca).
+  4. Lateral de navegação (desktop e mobile): página principal e
+     Ajuda de edição.
+  5. main#conteudo:
+     5.1. lead explicando que criar um artigo novo exige login,
+          igual a editar um já existente.
+     5.2. #aviso-login-necessario — aviso com links Entrar/Criar
+          conta, visível enquanto não há login.
+     5.3. #area-editor (hidden até login confirmado): <form
+          id="form-nova-pagina"> com campo "Título do novo artigo" e
+          prévia ao vivo do slug gerado (#previsao-slug-nova-pagina),
+          área de erro e botão "Começar a escrever" (leva a
+          editar.html?p=&lt;slug&gt;&novo=1, ver js/novas-paginas.js).
+     5.4. <details open> "Artigos pedidos" — lista em duas colunas
+          de 8 títulos já referenciados como "link vermelho" em
+          outras páginas (Cerrado, Estrada de Ferro Mogiana,
+          Instituto Barão da Rifaina, Pão de queijo, Peirópolis, Rio
+          Grande, Rio Paranaíba, Zebu e a ExpoZebu), cada um linkando
+          direto para editar.html?p=...&novo=1.
+  6. Rodapé com aviso de independência e link para licenciamento de
+     imagens.
+  7. Scripts finais: js/estado.js, js/indice.js,
+     js/autocompletar.js, js/dialogos.js e js/novas-paginas.js.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Novas páginas — TriânguloLeaks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<link rel="canonical" href="especial-novas-paginas.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/print.css" media="print">
+<script src="js/tema.js"></script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<div class="ladrilho" aria-hidden="true"></div>
+<div class="barra-pessoal">
+  <div class="envolucro envolucro-largo">
+    <ul>
+      <li><a href="especial-todas-as-paginas.html">Todos os artigos</a></li>
+      <li><a href="especial-mudancas-recentes.html">Mudanças recentes</a></li>
+      <li><a href="especial-mais-visitados.html">Mais visitados</a></li>
+      <li><a href="especial-linha-do-tempo.html">Linha do tempo</a></li>
+      <li><a href="conta-contribuicoes.html">Contribuições</a></li>
+    </ul>
+    <ul data-tp-area-conta>
+      <li><a href="conta-entrar.html">Entrar</a></li>
+      <li><a href="conta-criar.html">Criar conta</a></li>
+    </ul>
+  </div>
+</div>
+
+<header class="cabecalho">
+  <a class="logo-link" href="index.html">
+    <svg width="36" height="36" viewBox="0 0 100 100" role="img" aria-label="TriânguloLeaks"><circle cx="50" cy="50" r="48" fill="var(--terra-roxa)"></circle><polygon points="50,22 72,62 28,62" fill="var(--latao)" stroke="var(--papel)" stroke-width="2"></polygon></svg>
+    <span class="nome-projeto" style="font-size:1.1rem;">TriânguloLeaks</span>
+  </a>
+  <button type="button" class="botao-tema" data-tp-alternar-tema aria-label="Alternar entre tema claro e escuro" title="Alternar tema claro/escuro">
+    <svg class="icone-tema-sol" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.2" y1="4.2" x2="5.6" y2="5.6"></line><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.2" y1="19.8" x2="5.6" y2="18.4"></line><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"></line>
+      </g>
+    </svg>
+    <svg class="icone-tema-lua" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" fill="currentColor"></path>
+    </svg>
+  </button>
+</header>
+
+<div class="corpo envolucro-largo">
+  <aside class="lateral lateral-desktop"><details open><summary>Navegação</summary><ul><li><a href="index.html">Página principal</a></li><li><a href="ajuda-editar.html">Ajuda de edição</a></li></ul></details></aside>
+  <details class="menu-mobile"><summary>Menu</summary><aside class="lateral"><ul><li><a href="index.html">Página principal</a></li></ul></aside></details>
+
+  <main id="conteudo" class="conteudo-principal">
+    <h1>Novas páginas</h1>
+    <p class="lead">
+      Para manter a autoria rastreável, criar um artigo novo exige login — exatamente como
+      editar um já existente (ver <a href="ajuda-editar.html">Ajuda de edição</a>).
+    </p>
+
+    <section id="aviso-login-necessario">
+      <p class="aviso-simulacao">
+        Você precisa estar logado para criar uma página nova.
+        <a id="link-entrar-para-editar" href="conta-entrar.html">Entrar</a> ou
+        <a href="conta-criar.html">criar uma conta</a> (com chave de acesso, Google, ou um cadastro local simulado — sem envio de dados a
+        servidores).
+      </p>
+    </section>
+
+    <div id="area-editor" hidden>
+      <noscript><p class="aviso-simulacao">Este formulário exige JavaScript.</p></noscript>
+      <form id="form-nova-pagina">
+        <div class="campo">
+          <label for="titulo-nova-pagina">Título do novo artigo</label>
+          <input type="text" id="titulo-nova-pagina" name="titulo" required minlength="2" maxlength="80" placeholder="ex.: Fazenda da Barra">
+          <p class="ajuda-campo">Vai virar: <code id="previsao-slug-nova-pagina"></code></p>
+        </div>
+        <p id="erro-nova-pagina" role="alert" hidden style="color:#8a1c1c; font-weight:700;"></p>
+        <button type="submit" class="botao">Começar a escrever</button>
+      </form>
+    </div>
+
+    <details open>
+      <summary><div class="titulo-secao"><h2>Artigos pedidos</h2></div></summary>
+      <section>
+        <p style="font-size:0.9rem;">
+          Estes títulos já são referenciados (como "link vermelho") em outras páginas do site, mas
+          ainda não têm um artigo — um bom ponto de partida para quem quer contribuir.
+        </p>
+        <ul style="column-count:2; column-gap:2rem;">
+          <li><a href="editar.html?p=cerrado&amp;novo=1">Cerrado</a></li>
+          <li><a href="editar.html?p=estrada-de-ferro-mogiana&amp;novo=1">Estrada de Ferro Mogiana</a></li>
+          <li><a href="editar.html?p=instituto-barao-da-rifaina&amp;novo=1">Instituto Barão da Rifaina</a></li>
+          <li><a href="editar.html?p=pao-de-queijo&amp;novo=1">Pão de queijo</a></li>
+          <li><a href="editar.html?p=peiropolis&amp;novo=1">Peirópolis</a></li>
+          <li><a href="editar.html?p=rio-grande&amp;novo=1">Rio Grande</a></li>
+          <li><a href="editar.html?p=rio-paranaiba&amp;novo=1">Rio Paranaíba</a></li>
+          <li><a href="editar.html?p=zebu-e-a-expozebu&amp;novo=1">Zebu e a ExpoZebu</a></li>
+        </ul>
+        <p style="font-size:0.8rem; color:var(--tinta-suave);">Clicar em um destes títulos leva direto para <code>editar.html?…&amp;novo=1</code>, que também exige login.</p>
+      </section>
+    </details>
+  </main>
+</div>
+
+<footer class="rodape"><div class="envolucro-largo">
+  <p class="aviso-independente">A <strong>TriânguloLeaks</strong> é um projeto independente, sem vínculo com a Fundação Wikimedia. Todas as imagens e ilustrações do site são de uso e distribuição livres — ver <a href="ajuda-licenciamento-imagens.html">licenciamento de imagens</a>.</p>
+</div></footer>
+
+<script src="js/estado.js" defer></script>
+<script src="js/indice.js" defer></script>
+<script src="js/autocompletar.js" defer></script>
+<script src="js/dialogos.js" defer></script>
+<script src="js/novas-paginas.js" defer></script>
+</body>
+</html>

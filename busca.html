@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--
+  Página gerada a partir do mesmo padrão estrutural de
+  index.html e artigo-triangulo-mineiro.html (barra pessoal →
+  cabeçalho → abas/lateral → main → rodapé). Descrição completa
+  de cada bloco e função em ESTRUTURA-DO-PROJETO.md.
+-->
+<!-- ÍNDICE DA PÁGINA (gerado/mantido em lote — ver ESTRUTURA-DO-PROJETO.md) -->
+<!--
+  1. Metadados e cabeçalho HTTP (charset, título, viewport, CSP,
+     canonical, favicon, folhas de estilo tokens/base/layout/
+     componentes/print) + js/tema.js.
+  2. .ladrilho + barra pessoal (atalhos globais e Entrar/Criar
+     conta).
+  3. Cabeçalho: logo/link para a página principal, campo de busca
+     simples (<search> com <datalist> de sugestão) e botão de tema.
+  4. Lateral de navegação (desktop e mobile): página principal e
+     Todas as páginas (A–Z).
+  5. main#conteudo:
+     5.1. <h1>Pesquisar</h1> e #status-busca (mensagem de estado,
+          preenchida por js/busca.js — nº de resultados etc.).
+     5.2. <details class="filtros-busca"> "Busca avançada" —
+          formulário GET para a própria busca.html, combinável
+          (todos os campos preenchidos valem como E lógico):
+          · grade-filtros geral: termo/título-resumo, local, nome,
+            sobrenome, ano de início e de fim, palavras-chave e
+            categoria (<select>);
+          · <fieldset class="filtros-genealogia"> "Filtros de
+            genealogia" (mesma lógica de busca de árvore
+            genealógica): sexo, local de nascimento, local de
+            falecimento, nome do pai, nome da mãe e cônjuge.
+     5.3. #resultados-busca — lista de resultados renderizada em
+          tempo real por js/busca.js à medida que os filtros/consulta
+          mudam, cada item linkando ao artigo correspondente; entre
+          os itens com data, um botão gerado dinamicamente ("Enviar
+          resultado(s) com data para a Linha do tempo") grava a
+          seleção em localStorage e leva a
+          especial-linha-do-tempo.html.
+     5.4. <noscript> — aviso de que a busca por palavras exige
+          JavaScript, com alternativa via índice alfabético completo.
+  6. Rodapé com aviso de independência e link para licenciamento de
+     imagens.
+  7. Scripts finais: js/estado.js, js/dialogos.js, js/indice.js,
+     js/autocompletar.js e js/busca.js.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Pesquisar — TriânguloLeaks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<link rel="canonical" href="busca.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/print.css" media="print">
+<script src="js/tema.js"></script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<div class="ladrilho" aria-hidden="true"></div>
+<div class="barra-pessoal">
+  <div class="envolucro envolucro-largo">
+    <ul>
+      <li><a href="especial-todas-as-paginas.html">Todos os artigos</a></li>
+      <li><a href="especial-mudancas-recentes.html">Mudanças recentes</a></li>
+      <li><a href="especial-mais-visitados.html">Mais visitados</a></li>
+      <li><a href="especial-linha-do-tempo.html">Linha do tempo</a></li>
+      <li><a href="conta-contribuicoes.html">Contribuições</a></li>
+    </ul>
+    <ul data-tp-area-conta>
+      <li><a href="conta-entrar.html">Entrar</a></li>
+      <li><a href="conta-criar.html">Criar conta</a></li>
+    </ul>
+  </div>
+</div>
+
+<header class="cabecalho">
+  <a class="logo-link" href="index.html">
+    <svg width="36" height="36" viewBox="0 0 100 100" role="img" aria-label="TriânguloLeaks"><circle cx="50" cy="50" r="48" fill="var(--terra-roxa)"></circle><polygon points="50,22 72,62 28,62" fill="var(--latao)" stroke="var(--papel)" stroke-width="2"></polygon></svg>
+    <span class="nome-projeto" style="font-size:1.1rem;">TriânguloLeaks</span>
+  </a>
+  <search role="search">
+    <form class="busca-form" action="busca.html" method="get">
+      <label class="visualmente-oculto" for="q-busca">Pesquisar</label>
+      <input type="search" id="q-busca" name="search" list="titulos" accesskey="f" autocomplete="off" enterkeyhint="search" placeholder="Pesquisar…">
+      <datalist id="titulos"><option value="Triângulo Mineiro"><option value="Uberlândia"><option value="Uberaba"><option value="Araxá"></datalist>
+      <button type="submit" name="go" class="secundario">Ir</button>
+      <button type="submit">Pesquisar</button>
+    </form>
+  </search>
+  <button type="button" class="botao-tema" data-tp-alternar-tema aria-label="Alternar entre tema claro e escuro" title="Alternar tema claro/escuro">
+    <svg class="icone-tema-sol" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.2" y1="4.2" x2="5.6" y2="5.6"></line><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.2" y1="19.8" x2="5.6" y2="18.4"></line><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"></line>
+      </g>
+    </svg>
+    <svg class="icone-tema-lua" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" fill="currentColor"></path>
+    </svg>
+  </button>
+</header>
+
+<div class="corpo envolucro-largo">
+  <aside class="lateral lateral-desktop"><details open><summary>Navegação</summary><ul><li><a href="index.html">Página principal</a></li><li><a href="especial-todas-as-paginas.html">Todas as páginas (A–Z)</a></li></ul></details></aside>
+  <details class="menu-mobile"><summary>Menu</summary><aside class="lateral"><ul><li><a href="index.html">Página principal</a></li></ul></aside></details>
+
+  <main id="conteudo" class="conteudo-principal">
+    <h1>Pesquisar</h1>
+    <p id="status-busca" role="status" aria-live="polite"></p>
+
+    <details class="filtros-busca" open>
+      <summary>Busca avançada</summary>
+      <form id="form-busca-avancada" method="get" action="busca.html">
+        <p style="font-size:0.85rem; color:var(--tinta-suave); margin-top:0;">
+          Combine quantos campos quiser: os resultados são os artigos que atendem a
+          <strong>todos</strong> os filtros preenchidos ao mesmo tempo — assim dá para
+          cruzar, por exemplo, uma localização com um intervalo de datas ou uma palavra-chave.
+        </p>
+        <div class="grade-filtros">
+          <div class="campo">
+            <label for="av-termo">Termo geral (título/resumo)</label>
+            <input type="search" id="av-termo" name="search">
+          </div>
+          <div class="campo">
+            <label for="av-local">Localização</label>
+            <input type="text" id="av-local" name="local" placeholder="ex.: Uberaba">
+          </div>
+          <div class="campo">
+            <label for="av-nome">Nome</label>
+            <input type="text" id="av-nome" name="nome" placeholder="ex.: Vicente">
+          </div>
+          <div class="campo">
+            <label for="av-sobrenome">Sobrenome</label>
+            <input type="text" id="av-sobrenome" name="sobrenome" placeholder="ex.: Vieira">
+          </div>
+          <div class="campo">
+            <label for="av-ano-inicio">Nascimento/início a partir de</label>
+            <input type="number" id="av-ano-inicio" name="ano-inicio" min="1000" max="2100" inputmode="numeric">
+          </div>
+          <div class="campo">
+            <label for="av-ano-fim">Falecimento/fim até</label>
+            <input type="number" id="av-ano-fim" name="ano-fim" min="1000" max="2100" inputmode="numeric">
+          </div>
+          <div class="campo campo-largo">
+            <label for="av-palavras">Palavras-chave (separadas por vírgula)</label>
+            <input type="text" id="av-palavras" name="palavras" placeholder="ex.: zebu, ferrovia">
+          </div>
+          <div class="campo">
+            <label for="av-categoria">Categoria</label>
+            <select id="av-categoria" name="categoria">
+              <option value="">Todas as categorias</option>
+            </select>
+          </div>
+        </div>
+
+        <fieldset class="filtros-genealogia">
+          <legend>Filtros de genealogia <span style="font-weight:400; font-size:0.8rem;">(mesma lógica de busca do FamilySearch/Family Tree: pessoa + eventos de vida + parentes diretos)</span></legend>
+          <div class="grade-filtros">
+            <div class="campo">
+              <label for="av-sexo">Sexo</label>
+              <select id="av-sexo" name="sexo">
+                <option value="">(qualquer)</option>
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="av-local-nascimento">Local de nascimento</label>
+              <input type="text" id="av-local-nascimento" name="local-nascimento" placeholder="ex.: Queluz de Minas">
+            </div>
+            <div class="campo">
+              <label for="av-local-falecimento">Local de falecimento</label>
+              <input type="text" id="av-local-falecimento" name="local-falecimento" placeholder="ex.: Sacramento">
+            </div>
+            <div class="campo">
+              <label for="av-pai">Nome do pai</label>
+              <input type="text" id="av-pai" name="pai" placeholder="ex.: Severino">
+            </div>
+            <div class="campo">
+              <label for="av-mae">Nome da mãe</label>
+              <input type="text" id="av-mae" name="mae" placeholder="ex.: Maria Antônia">
+            </div>
+            <div class="campo">
+              <label for="av-conjuge">Cônjuge</label>
+              <input type="text" id="av-conjuge" name="conjuge" placeholder="ex.: Maria José">
+            </div>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="botao">Pesquisar com filtros</button>
+      </form>
+    </details>
+
+    <div id="resultados-busca"></div>
+
+    <noscript>
+      <p>A busca por palavras exige JavaScript. Sem ele, use o
+      <a href="especial-todas-as-paginas.html">índice alfabético completo</a> para encontrar um
+      artigo pelo título.</p>
+    </noscript>
+  </main>
+</div>
+
+<footer class="rodape"><div class="envolucro-largo">
+  <p class="aviso-independente">A <strong>TriânguloLeaks</strong> é um projeto independente, sem vínculo com a Fundação Wikimedia. Todas as imagens e ilustrações do site são de uso e distribuição livres — ver <a href="ajuda-licenciamento-imagens.html">licenciamento de imagens</a>.</p>
+</div></footer>
+
+<script src="js/estado.js" defer></script>
+<script src="js/dialogos.js" defer></script>
+<script src="js/indice.js" defer></script>
+<script src="js/autocompletar.js" defer></script>
+<script src="js/busca.js" defer></script>
+</body>
+</html>

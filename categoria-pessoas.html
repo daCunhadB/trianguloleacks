@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!--
+  Página de categoria gerada automaticamente a partir da varredura dos
+  próprios artigos (seção "Categorias" no rodapé de cada um), seguindo
+  o mesmo padrão estrutural de categoria-cidades.html.
+-->
+<!-- ÍNDICE DA PÁGINA (gerado/mantido em lote — ver ESTRUTURA-DO-PROJETO.md) -->
+<!--
+  1. Metadados e cabeçalho HTTP (charset, título, viewport, CSP,
+     canonical, favicon, folhas de estilo tokens/base/layout/
+     componentes/print) + js/tema.js.
+  2. .ladrilho + barra pessoal (atalhos globais e Entrar/Criar
+     conta).
+  3. Cabeçalho: logo + botão de tema (sem campo de busca).
+  4. Lateral de navegação (desktop e mobile): página principal e
+     Todas as categorias (especial-categorias.html).
+  5. main#conteudo:
+     5.1. Título "Categoria:Pessoas" e parágrafo descrevendo o
+          escopo (biografias de pessoas ligadas à história do
+          Triângulo Mineiro) com a contagem entre parênteses
+          (50 artigos).
+     5.2. Nav de atalhos alfabéticos (15 letras: A, B, C, D, E, F,
+          J, L, M, O, P, R, S, T, V).
+     5.3. Listas <h2 id="letra-X">/<ul>, uma por letra, com as 50
+          biografias do site (rede de parentesco do Barão da Rifaina
+          e demais figuras históricas).
+     5.4. <details class="navbox"> "Subcategorias" — sempre vazia
+          neste projeto (nenhuma subcategoria cadastrada).
+  6. Rodapé com aviso de independência e link para licenciamento de
+     imagens.
+  7. Scripts finais: js/estado.js e js/dialogos.js.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Categoria:Pessoas — TriânguloLeaks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<link rel="canonical" href="categoria-pessoas.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/print.css" media="print">
+<script src="js/tema.js"></script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<div class="ladrilho" aria-hidden="true"></div>
+<div class="barra-pessoal">
+  <div class="envolucro envolucro-largo">
+    <ul>
+      <li><a href="especial-todas-as-paginas.html">Todos os artigos</a></li>
+      <li><a href="especial-mudancas-recentes.html">Mudanças recentes</a></li>
+      <li><a href="especial-mais-visitados.html">Mais visitados</a></li>
+      <li><a href="especial-linha-do-tempo.html">Linha do tempo</a></li>
+      <li><a href="conta-contribuicoes.html">Contribuições</a></li>
+    </ul>
+    <ul data-tp-area-conta>
+      <li><a href="conta-entrar.html">Entrar</a></li>
+      <li><a href="conta-criar.html">Criar conta</a></li>
+    </ul>
+  </div>
+</div>
+
+<header class="cabecalho">
+  <a class="logo-link" href="index.html">
+    <svg width="36" height="36" viewBox="0 0 100 100" role="img" aria-label="TriânguloLeaks"><circle cx="50" cy="50" r="48" fill="var(--terra-roxa)"></circle><polygon points="50,22 72,62 28,62" fill="var(--latao)" stroke="var(--papel)" stroke-width="2"></polygon></svg>
+    <span class="nome-projeto" style="font-size:1.1rem;">TriânguloLeaks</span>
+  </a>
+  <button type="button" class="botao-tema" data-tp-alternar-tema aria-label="Alternar entre tema claro e escuro" title="Alternar tema claro/escuro">
+    <svg class="icone-tema-sol" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.2" y1="4.2" x2="5.6" y2="5.6"></line><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.2" y1="19.8" x2="5.6" y2="18.4"></line><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"></line>
+      </g>
+    </svg>
+    <svg class="icone-tema-lua" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" fill="currentColor"></path>
+    </svg>
+  </button>
+</header>
+
+<div class="corpo envolucro-largo">
+  <aside class="lateral lateral-desktop"><details open><summary>Navegação</summary><ul><li><a href="index.html">Página principal</a></li><li><a href="especial-categorias.html">Todas as categorias</a></li></ul></details></aside>
+  <details class="menu-mobile"><summary>Menu</summary><aside class="lateral"><ul><li><a href="index.html">Página principal</a></li></ul></aside></details>
+
+  <main id="conteudo" class="conteudo-principal">
+    <h1>Categoria:Pessoas</h1>
+    <p>Biografias de pessoas ligadas à história do Triângulo Mineiro. (50 artigos.)</p>
+
+    <nav aria-label="Navegação alfabética" style="margin-bottom:1rem; font-size:0.85rem;">
+      <a href="#letra-a">A</a> · <a href="#letra-b">B</a> · <a href="#letra-c">C</a> · <a href="#letra-d">D</a> · <a href="#letra-e">E</a> · <a href="#letra-f">F</a> · <a href="#letra-j">J</a> · <a href="#letra-l">L</a> · <a href="#letra-m">M</a> · <a href="#letra-o">O</a> · <a href="#letra-p">P</a> · <a href="#letra-r">R</a> · <a href="#letra-s">S</a> · <a href="#letra-t">T</a> · <a href="#letra-v">V</a>
+    </nav>
+
+    <h2 id="letra-a">A</h2>
+    <ul>
+      <li><a href="artigo-afonso-pena.html">Afonso Pena</a></li>
+      <li><a href="artigo-agnelo-de-paula-vieira.html">Agnelo de Paula Vieira</a></li>
+      <li><a href="artigo-alferes-joaquim-antonio-de-lima.html">Alferes Joaquim Antônio de Lima</a></li>
+      <li><a href="artigo-amelia-vieira.html">Amélia Vieira</a></li>
+      <li><a href="artigo-ana-antonia-de-lima.html">Ana Antônia de Lima ("Ana Vieira")</a></li>
+      <li><a href="artigo-ana-maria-da-conceicao.html">Ana Maria da Conceição</a></li>
+      <li><a href="artigo-antonio-augusto-de-lima.html">Antônio Augusto de Lima</a></li>
+    </ul>
+
+    <h2 id="letra-b">B</h2>
+    <ul>
+      <li><a href="artigo-bernardo-avelino-gaviao-peixoto.html">Bernardo Avelino Gavião Peixoto</a></li>
+    </ul>
+
+    <h2 id="letra-c">C</h2>
+    <ul>
+      <li><a href="artigo-domingos-da-silva-e-oliveira.html">Capitão Domingos da Silva e Oliveira</a></li>
+      <li><a href="artigo-capitao-francisco-jose-de-oliveira.html">Capitão Francisco José de Oliveira</a></li>
+      <li><a href="artigo-capitao-manuel-antonio-de-santana.html">Capitão Manuel Antônio de Santana</a></li>
+      <li><a href="artigo-capitao-vicente-de-paula-vieira-junior.html">Capitão Vicente de Paula Vieira Júnior</a></li>
+      <li><a href="artigo-capitao-mor-jose-vieira-da-silva.html">Capitão-Mór José Vieira da Silva</a></li>
+      <li><a href="artigo-crispim-jacques-bias-fortes.html">Chrispim Jacques Bias Fortes</a></li>
+      <li><a href="artigo-coronel-antonio-carlos-da-silva.html">Coronel Antônio Carlos da Silva</a></li>
+      <li><a href="artigo-coronel-jose-affonso-de-almeida.html">Coronel José Affonso de Almeida</a></li>
+      <li><a href="artigo-vicente-de-paula-vieira-neto.html">Coronel Vicente de Paula Vieira Neto ("Vicentinho")</a></li>
+    </ul>
+
+    <h2 id="letra-d">D</h2>
+    <ul>
+      <li><a href="artigo-descendente-doadora-do-acervo-barao-da-rifaina.html">Descendente doadora do acervo do Barão da Rifaina</a></li>
+      <li><a href="artigo-doutor-fidelis-reis.html">Doutor Fidelis Reis</a></li>
+      <li><a href="artigo-jose-vieira-de-paula.html">Doutor José Vieira de Paula</a></li>
+    </ul>
+
+    <h2 id="letra-e">E</h2>
+    <ul>
+      <li><a href="artigo-ernesto-de-paula-vieira.html">Ernesto de Paula Vieira</a></li>
+    </ul>
+
+    <h2 id="letra-f">F</h2>
+    <ul>
+      <li><a href="artigo-fidelis-goncalves-reis.html">Fidélis Gonçalves Reis</a></li>
+      <li><a href="artigo-francisca-de-paula-santana.html">Francisca de Paula Santana</a></li>
+      <li><a href="artigo-francisco-luis-da-veiga.html">Francisco Luís da Veiga</a></li>
+      <li><a href="artigo-frei-eugenio-maria-da-genova.html">Frei Eugênio Maria da Gênova</a></li>
+    </ul>
+
+    <h2 id="letra-j">J</h2>
+    <ul>
+      <li><a href="artigo-joaquim-delaney.html">Joaquim Delaney</a></li>
+      <li><a href="artigo-jose-bento-leite-ferreira-de-melo.html">José Bento Leite Ferreira de Melo</a></li>
+      <li><a href="artigo-doutor-antonio-de-cerqueira-lima.html">Juiz de Direito Doutor Antônio de Cerqueira Lima</a></li>
+    </ul>
+
+    <h2 id="letra-l">L</h2>
+    <ul>
+      <li><a href="artigo-lafayette-rodrigues-pereira.html">Lafayette Rodrigues Pereira</a></li>
+      <li><a href="artigo-laura-vieira-de-oliveira.html">Laura Vieira de Oliveira</a></li>
+    </ul>
+
+    <h2 id="letra-m">M</h2>
+    <ul>
+      <li><a href="artigo-eustaquio-da-silva-e-oliveira.html">Major Eustáquio da Silva e Oliveira</a></li>
+      <li><a href="artigo-major-joao-baptista-de-siqueira.html">Major João Baptista de Siqueira</a></li>
+      <li><a href="artigo-major-severino-jose-vieira-filho.html">Major Severino José Vieira Filho</a></li>
+      <li><a href="artigo-manuel-joaquim-de-santana.html">Manuel Joaquim de Sant'Ana</a></li>
+      <li><a href="artigo-maria-antonia-de-lima.html">Maria Antônia de Lima</a></li>
+      <li><a href="artigo-maria-candida-vieira.html">Maria Cândida Vieira</a></li>
+      <li><a href="artigo-maria-jose-vieira-de-almeida.html">Maria José Vieira de Almeida</a></li>
+      <li><a href="artigo-maria-jose-da-conceicao.html">Maria José da Conceição, Baronesa da Rifaina</a></li>
+      <li><a href="artigo-maria-jose-da-silva-sogra-do-barao.html">Maria José da Silva (sogra do Barão da Rifaina)</a></li>
+      <li><a href="artigo-martim-francisco-ribeiro-de-andrada.html">Martim Francisco Ribeiro de Andrada</a></li>
+    </ul>
+
+    <h2 id="letra-o">O</h2>
+    <ul>
+      <li><a href="artigo-olympia-vieira-de-santana.html">Olympia Vieira de Santana</a></li>
+    </ul>
+
+    <h2 id="letra-p">P</h2>
+    <ul>
+      <li><a href="artigo-padre-hermogenes-cassimiro-de-araujo-brunswick.html">Padre Hermógenes Cassimiro de Araujo Brunswick</a></li>
+      <li><a href="artigo-padre-zeferino-batista-do-carmo.html">Padre Zeferino Batista do Carmo</a></li>
+    </ul>
+
+    <h2 id="letra-r">R</h2>
+    <ul>
+      <li><a href="artigo-rita-candida-de-jesus.html">Rita Cândida de Jesus</a></li>
+    </ul>
+
+    <h2 id="letra-s">S</h2>
+    <ul>
+      <li><a href="artigo-senador-manuel-da-silva-prata.html">Senador Manuel da Silva Prata</a></li>
+      <li><a href="artigo-severino-jose-vieira.html">Severino José Vieira</a></li>
+    </ul>
+
+    <h2 id="letra-t">T</h2>
+    <ul>
+      <li><a href="artigo-tenente-joaquim-jose-vieira.html">Tenente Joaquim José Vieira</a></li>
+      <li><a href="artigo-teofilo-otoni.html">Teófilo Otoni</a></li>
+    </ul>
+
+    <h2 id="letra-v">V</h2>
+    <ul>
+      <li><a href="artigo-vicente-de-paula-vieira.html">Vicente de Paula Vieira</a></li>
+      <li><a href="artigo-vicentina-de-paula-vieira.html">Vicentina de Paula Vieira</a></li>
+    </ul>
+
+    <details class="navbox" style="margin-top:2rem;">
+      <summary>Subcategorias</summary>
+      <p style="padding:0.5rem 0.75rem;">Nenhuma subcategoria cadastrada.</p>
+    </details>
+  </main>
+</div>
+
+<footer class="rodape"><div class="envolucro-largo">
+  <p class="aviso-independente">A <strong>TriânguloLeaks</strong> é um projeto independente, sem vínculo com a Fundação Wikimedia. Todas as imagens e ilustrações do site são de uso e distribuição livres — ver <a href="ajuda-licenciamento-imagens.html">licenciamento de imagens</a>.</p>
+</div></footer>
+
+<script src="js/estado.js" defer></script>
+<script src="js/dialogos.js" defer></script>
+</body>
+</html>
