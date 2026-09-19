@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<!--
+  ================================================================
+  PÁGINA: artigo-triangulo-mineiro.html — artigo COMPLETO modelo
+  ================================================================
+  Esta é a página mais completa do projeto: usada como referência
+  para todos os outros artigos (Uberlândia, Uberaba, Araxá, Vicente
+  de Paula Vieira). Estrutura:
+    1. Barra pessoal · 2. Cabeçalho · 3. Abas (Ler/Editar/
+       Histórico, com estrela de vigilância)
+    4. Lateral (Navegação, Ferramentas, Imprimir/exportar)
+    5. <main>:
+       5.1 Banner de redirecionamento (:target) + hatnote de
+           desambiguação + caixa de aviso "sem fontes"
+       5.2 Infobox (ficha lateral)
+       5.3 Lead (parágrafo de abertura)
+       5.4 Sumário (#sumario, recolhível, numerado por CSS counters)
+       5.5 Seções em <details open> (independentes entre si):
+           Geografia (com 2 subseções), História, Economia,
+           Demografia e cidades, Cultura, Infraestrutura, Ver também
+       5.6 Notas · Referências (com âncoras ida-e-volta ↑) ·
+           Ligações externas
+       5.7 Navbox (details.navbox) + Categorias (.catlinks)
+    6. Rodapé
+    7. <dialog>s: Citar esta página · Informações da página
+  Cada seção usa `<details open>` sem o atributo `name`: por
+  padrão TODAS ficam abertas e visíveis (leitura completa e
+  imediata, inclusive sem JavaScript). Um `<details>` com `name`
+  compartilhado foi testado e descartado — o HTML padrão trata um
+  grupo de `<details>` com o mesmo `name` como um acordeão
+  MUTUAMENTE EXCLUSIVO desde o carregamento da página, fechando
+  automaticamente todas as seções menos uma mesmo com `open` em
+  todas — o que escondia a maior parte do artigo. Ver testes em
+  ESTRUTURA-DO-PROJETO.md / relatório de testes.
+  ================================================================
+-->
+<!-- ÍNDICE DA PÁGINA (gerado/mantido em lote — ver ESTRUTURA-DO-PROJETO.md, secao Indice de secoes) -->
+<!--
+  1. Metadados e cabeçalho HTTP: charset, título, viewport, meta
+     description, Content-Security-Policy (script-src 'self' — sem
+     script inline), link canonical/ícone e folhas de estilo
+     (tokens/base/layout/componentes/print) + js/tema.js (evita flash
+     de tema errado).
+  2. Barra pessoal: atalhos globais (Todos os artigos, Mudanças
+     recentes, Mais visitados, Linha do tempo, Contribuições,
+     Entrar/Criar conta).
+  3. Cabeçalho: logo/link para a página principal, formulário de
+     busca (com datalist de sugestão) e botão de alternância de
+     tema claro/escuro.
+  4. Abas de espaço nominal: Ler (atual) / Editar / Ver histórico.
+  5. Lateral de navegação: versão fixa (desktop) e versão em
+     <details> (mobile/menu sanduíche).
+  6. Conteúdo principal (main#conteudo):
+     6.1. Infobox (ilustração esquemática + dados-chave).
+     6.2. Parágrafo-lead (resumo introdutório com referência).
+     6.3. Corpo do artigo em seções <details>/<summary>
+          expansíveis, cada uma com link [editar]: 1. Geografia , 2. História , 3. Economia , 4. Demografia e cidades , 5. Cultura , 6. Infraestrutura , Ver também.
+     6.4. Referências numeradas (notas de rodapé com link de volta).
+     6.5. Categorias (nav.catlinks) — usadas pelas páginas
+          categoria-*.html e pela indexação automática.
+  7. Rodapé: aviso de independência do projeto e link para
+     licenciamento de imagens.
+  8. Scripts de comportamento (fim do body, com defer):
+     js/estado.js (login/artigo-vigiado/edição salva) e
+     js/dialogos.js (diálogo "Citar esta página" etc.).
+     Todo o JavaScript é sempre externo (nunca inline), por causa
+     da CSP acima.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Triângulo Mineiro — TriânguloLeaks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Triângulo Mineiro: região de Minas Gerais entre os rios Grande e Paranaíba, com forte vocação agropecuária e polos universitários.">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<link rel="canonical" href="artigo-triangulo-mineiro.html">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/print.css" media="print">
+<script src="js/tema.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Triângulo Mineiro","inLanguage":"pt-BR"}
+</script>
+</head>
+<body class="com-sumario-fixo" data-tp-slug="triangulo-mineiro">
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<div class="ladrilho" aria-hidden="true"></div>
+
+<!-- ============ 1. BARRA PESSOAL ============ -->
+<div class="barra-pessoal">
+  <div class="envolucro envolucro-largo">
+    <ul>
+      <li><a href="especial-todas-as-paginas.html">Todos os artigos</a></li>
+      <li><a href="especial-mudancas-recentes.html">Mudanças recentes</a></li>
+      <li><a href="especial-mais-visitados.html">Mais visitados</a></li>
+      <li><a href="especial-linha-do-tempo.html">Linha do tempo</a></li>
+      <li><a href="conta-contribuicoes.html">Contribuições</a></li>
+    </ul>
+    <ul data-tp-area-conta>
+      <li><a href="conta-entrar.html">Entrar</a></li>
+      <li><a href="conta-criar.html">Criar conta</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 2. CABEÇALHO: logo + busca ============ -->
+<header class="cabecalho">
+  <a class="logo-link" href="index.html">
+    <svg width="36" height="36" viewBox="0 0 100 100" role="img" aria-label="TriânguloLeaks">
+      <circle cx="50" cy="50" r="48" fill="var(--terra-roxa)"></circle>
+      <polygon points="50,22 72,62 28,62" fill="var(--latao)" stroke="var(--papel)" stroke-width="2"></polygon>
+    </svg>
+    <span class="nome-projeto" style="font-size:1.1rem;">TriânguloLeaks</span>
+  </a>
+  <search role="search">
+    <form class="busca-form" action="busca.html" method="get">
+      <label class="visualmente-oculto" for="q">Pesquisar</label>
+      <input type="search" id="q" name="search" list="titulos" accesskey="f" autocomplete="off" enterkeyhint="search" placeholder="Pesquisar…">
+      <datalist id="titulos"><option value="Triângulo Mineiro"><option value="Uberlândia"><option value="Uberaba"></datalist>
+      <button type="submit" name="go" class="secundario">Ir</button>
+      <button type="submit">Pesquisar</button>
+    </form>
+  </search>
+  <button type="button" class="botao-tema" data-tp-alternar-tema aria-label="Alternar entre tema claro e escuro" title="Alternar tema claro/escuro">
+    <svg class="icone-tema-sol" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.2" y1="4.2" x2="5.6" y2="5.6"></line><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.2" y1="19.8" x2="5.6" y2="18.4"></line><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"></line>
+      </g>
+    </svg>
+    <svg class="icone-tema-lua" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" fill="currentColor"></path>
+    </svg>
+  </button>
+</header>
+
+<!-- ============ 3. ABAS: Ler/Editar/Histórico ============ -->
+<nav class="abas-nav" aria-label="Espaços nominais">
+  <ul>
+    <li><a href="artigo-triangulo-mineiro.html" aria-current="page">Ler</a></li>
+    <li><a href="editar-triangulo-mineiro.html">Editar</a></li>
+    <li><a href="historico-triangulo-mineiro.html">Ver histórico</a></li>
+    <li>
+      <label class="estrela-rotulo">
+        <input type="checkbox" data-tp-vigiar="triangulo-mineiro">
+        <span class="icone-estrela" aria-hidden="true"></span>
+        <span class="visualmente-oculto">Vigiar esta página</span>
+      </label>
+    </li>
+  </ul>
+</nav>
+
+<!-- ============ 4. CORPO: lateral + conteúdo ============ -->
+<div class="corpo envolucro-largo">
+  <aside class="lateral lateral-desktop" aria-label="Navegação lateral">
+    <details open>
+      <summary>Navegação</summary>
+      <ul>
+        <li><a href="index.html">Página principal</a></li>
+      </ul>
+    </details>
+    <details open>
+      <summary>Ferramentas</summary>
+      <ul>
+        <li><a href="#" data-tp-dialogo="#dialogo-citar">Citar esta página</a></li>
+        <li><a href="especial-todas-as-paginas.html">Páginas especiais</a></li>
+        <li><a href="artigo-triangulo-mineiro.html">Link permanente</a></li>
+        <li><a href="#" data-tp-dialogo="#dialogo-infopagina">Informações da página</a></li>
+      </ul>
+    </details>
+    <details>
+      <summary>Imprimir/exportar</summary>
+      <ul><li><button type="button" class="imprimir-botao" style="background:none;border:none;color:var(--anil);text-decoration:underline;cursor:pointer;padding:0;font:inherit;">Versão para impressão</button></li></ul>
+    </details>
+  </aside>
+
+  <details class="menu-mobile">
+    <summary>Menu</summary>
+    <aside class="lateral"><ul>
+      <li><a href="index.html">Página principal</a></li>
+      <li><a href="historico-triangulo-mineiro.html">Histórico</a></li>
+    </ul></aside>
+  </details>
+
+  <!-- ============ 5. MAIN: conteúdo do artigo ============ -->
+  <main id="conteudo" class="conteudo-principal">
+    <span id="inicio"></span>
+    <h1 id="topo">Triângulo Mineiro</h1>
+    <p class="tagline">De TriânguloLeaks, a enciclopédia do Triângulo Mineiro</p>
+    <p id="triangulo" class="banner-redirecionado">(Redirecionado de "Triângulo")</p>
+
+    <p role="note" class="hatnote">
+      Este artigo é sobre a região de Minas Gerais. Para a figura geométrica, veja
+      <a href="desambiguacao-triangulo.html">Triângulo (desambiguação)</a>.
+    </p>
+
+    <aside class="caixa-aviso" role="note">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2 22,20 2,20" fill="none" stroke="var(--latao)" stroke-width="2"></polygon><text x="12" y="17" text-anchor="middle" font-size="10" fill="var(--latao)">!</text></svg>
+      <p>Este artigo precisa de mais referências para verificação. Ajude a melhorá-lo citando fontes confiáveis.
+      <a href="ajuda-citacao.html">Saiba como</a>.</p>
+    </aside>
+
+    <table class="infobox">
+      <caption>Triângulo Mineiro</caption>
+      <tr><td class="infobox-imagem">
+        <svg viewBox="0 0 200 130" role="img" aria-label="Mapa esquemático de localização">
+          <rect width="200" height="130" fill="var(--papel-3)"></rect>
+          <path d="M5 30 Q 100 5, 195 40" stroke="var(--anil)" stroke-width="2" fill="none"></path>
+          <path d="M5 110 Q 100 125, 195 95" stroke="var(--anil)" stroke-width="2" fill="none"></path>
+          <polygon points="70,50 130,50 100,90" fill="var(--terra-roxa)" opacity="0.7"></polygon>
+        </svg>
+      </td></tr>
+      <tr><th class="infobox-secao" colspan="2">Localização</th></tr>
+      <tr><th scope="row">País</th><td>Brasil</td></tr>
+      <tr><th scope="row">Estado</th><td><a href="artigo-minas-gerais.html">Minas Gerais</a></td></tr>
+      <tr><th scope="row">Limites naturais</th><td>Rio Grande e Rio Paranaíba</td></tr>
+      <tr><th class="infobox-secao" colspan="2">Características</th></tr>
+      <tr><th scope="row">Área</th><td>93.500 km² <sup class="ref"><a id="ref-4" href="#nota-4">[4]</a></sup></td></tr>
+      <tr><th scope="row">População</th><td>mais de 2.000.000 hab. <small>(cerca de 11% da população de Minas Gerais)</small> <sup class="ref"><a id="ref-4b" href="#nota-4">[4]</a></sup></td></tr>
+      <tr><th scope="row">Bioma predominante</th><td><a href="artigo-cerrado.html">Cerrado</a></td></tr>
+      <tr><th scope="row">Principais cidades</th><td>Uberlândia, Uberaba, Araxá, Ituiutaba</td></tr>
+      <tr><th scope="row">Coordenadas</th><td><data value="-19.0,-48.5">19°S 48°O</data></td></tr>
+    </table>
+
+    <p class="lead">
+      O <strong>Triângulo Mineiro</strong> é uma região geográfica e historicamente reconhecida do
+      estado de <a href="artigo-minas-gerais.html">Minas Gerais</a>, no Brasil,
+      situada no extremo oeste do estado, entre os rios <a href="artigo-rio-grande.html">Grande</a>
+      e <a href="artigo-rio-paranaiba.html">Paranaíba</a>, que lhe dão o formato
+      aproximadamente triangular que origina o nome popular da região. Administrativamente, a área é
+      tratada em conjunto com o chamado Alto Paranaíba, formando a mesorregião do
+      <dfn>Triângulo Mineiro/Alto Paranaíba</dfn><sup class="cn"><a href="ajuda-citacao.html">[citação necessária]</a></sup>.
+    </p>
+    <p>
+      A região é reconhecida por sua forte vocação agropecuária — em especial a pecuária de corte
+      com predomínio de raças zebuínas — pelo agronegócio de grãos e pela presença de polos
+      universitários e industriais em cidades como <a href="artigo-uberlandia.html">Uberlândia</a> e
+      <a href="artigo-uberaba.html">Uberaba</a>.
+    </p>
+
+    <nav id="sumario" aria-label="Sumário do artigo">
+      <details open>
+        <summary>Conteúdo</summary>
+        <ol>
+          <li><a href="#geografia">Geografia</a>
+            <ol>
+              <li><a href="#relevo-e-hidrografia">Relevo e hidrografia</a></li>
+              <li><a href="#clima">Clima</a></li>
+            </ol>
+          </li>
+          <li><a href="#historia">História</a></li>
+          <li><a href="#economia">Economia</a></li>
+          <li><a href="#demografia-e-cidades">Demografia e cidades</a></li>
+          <li><a href="#cultura">Cultura</a></li>
+          <li><a href="#infraestrutura">Infraestrutura</a></li>
+          <li><a href="#ver-tambem">Ver também</a></li>
+          <li><a href="#notas">Notas</a></li>
+          <li><a href="#referencias">Referências</a></li>
+          <li><a href="#ligacoes-externas">Ligações externas</a></li>
+        </ol>
+      </details>
+    </nav>
+
+    <details open id="geografia">
+      <summary><div class="titulo-secao"><h2>1. Geografia <a class="link-editar-secao" href="editar-triangulo-mineiro.html?secao=geografia">[editar]</a></h2></div></summary>
+      <section>
+        <p>
+          O Triângulo Mineiro ocupa a porção mais ocidental de Minas Gerais, fazendo divisa com os
+          estados de <a href="artigo-goias.html">Goiás</a> e
+          <a href="artigo-sao-paulo.html">São Paulo</a>. O relevo é
+          predominantemente formado por chapadas e planaltos, com altitudes moderadas, favorecendo a
+          mecanização agrícola.
+        </p>
+        <figure class="miniatura direita">
+          <svg viewBox="0 0 180 120" role="img" aria-label="Ilustração esquemática de chapada"><rect width="180" height="120" fill="var(--papel-3)"></rect><rect y="70" width="180" height="50" fill="var(--latao)" opacity="0.5"></rect><rect y="50" width="180" height="20" fill="var(--tinta-suave)" opacity="0.6"></rect></svg>
+          <figcaption>Relevo típico de chapada, comum na porção oeste da região.</figcaption>
+          <p class="credito-imagem"><span class="selo-licenca">CC0</span> Ilustração original da TriânguloLeaks — uso e distribuição livres. <a href="ajuda-licenciamento-imagens.html">Sobre o licenciamento</a>.</p>
+        </figure>
+
+        <details open id="relevo-e-hidrografia">
+          <summary><h3>1.1 Relevo e hidrografia</h3></summary>
+          <p>
+            A hidrografia regional é organizada por afluentes dos rios Grande e Paranaíba, que
+            convergem para o rio <a href="artigo-parana.html">Paraná</a> mais a
+            jusante. Entre os cursos d'água de destaque estão o rio Uberabinha e o rio Araguari.
+          </p>
+        </details>
+
+        <details id="clima">
+          <summary><h3>1.2 Clima</h3></summary>
+          <p>
+            O clima predominante é o tropical de altitude, com estações bem definidas: um período
+            seco, entre abril e setembro, e um período chuvoso, entre outubro e março
+            <sup class="ref"><a id="ref-1" href="#nota-1">[1]</a></sup>.
+          </p>
+        </details>
+      </section>
+    </details>
+
+    <details open id="historia">
+      <summary><div class="titulo-secao"><h2>2. História <a class="link-editar-secao" href="editar-triangulo-mineiro.html?secao=historia">[editar]</a></h2></div></summary>
+      <section>
+        <p>
+          Antes da chegada de expedições não indígenas, o território hoje chamado de Triângulo
+          Mineiro era habitado por povos indígenas do tronco Jê, entre os quais os Caiapós, que
+          resistiram por décadas ao avanço de bandeirantes e tropeiros vindos de São Paulo em
+          direção a Goiás<sup class="ref"><a id="ref-2" href="#nota-2">[2]</a></sup>. Uma das
+          rotas mais conhecidas desse período é a "Estrada de Goiás" (ou "Picada de Goiás"),
+          aberta a partir de 1722 e associada à figura de Bartolomeu Bueno da Silva, o Anhanguera.
+        </p>
+        <p>
+          O próprio apelido histórico da região — <strong>"Sertão da Farinha Podre"</strong> — vem
+          dessa fase de expedições: as tropas que atravessavam o território deixavam depósitos de
+          farinha de mandioca ao longo do caminho para garantir mantimento na viagem de volta, e
+          quando esses estoques já estavam fermentados ou estragados no regresso, a região passou
+          a ser identificada por esse nome, usado em documentos oficiais até o final do século
+          XIX<sup class="ref"><a id="ref-2" href="#nota-2">[2]</a></sup>. O nome atual,
+          "Triângulo Mineiro", faz referência à forma aproximadamente triangular do território,
+          delimitado pelos rios Grande, Paranaíba e pela divisa com Goiás/Mato Grosso.
+        </p>
+        <p>
+          Administrativamente, a região só passou a integrar Minas Gerais de forma definitiva no
+          início do século XIX: até então, parte do território esteve ligada à capitania/província
+          de Goiás. O povoado de <strong>Desemboque</strong>, fundado em 1743, é considerado o
+          primeiro núcleo de povoamento não indígena da região, e deu origem ao "Julgado do
+          Desemboque". A separação em dois julgados — Desemboque e Araxá — ocorreu em 1811, e
+          Araxá foi formalmente incorporada a Minas Gerais em 1816, tornando-se município em 1830.
+          A partir daí, o ciclo de emancipações se acelerou ao longo do século XIX: Uberaba
+          separou-se de Araxá em 1836, já impulsionada pelo início do ciclo da pecuária; Patrocínio
+          ganhou autonomia em 1842, no contexto do café e da expansão da criação de gado; e Patos
+          de Minas emancipou-se de Patrocínio em 1868<sup class="ref"><a id="ref-2" href="#nota-2">[2]</a></sup>.
+        </p>
+        <p>
+          A chegada de ramais da <a href="artigo-estrada-de-ferro-mogiana.html">Estrada de Ferro
+          Mogiana</a>, entre as décadas de 1880 e 1890, foi decisiva para transformar antigos
+          entrepostos comerciais em cidades de porte médio, deslocando o eixo econômico regional
+          para os municípios servidos pela ferrovia — com destaque para Araguari, que se tornou por
+          décadas o principal entroncamento ferroviário da região, papel que só seria assumido por
+          Uberlândia a partir de meados do século XX, com o declínio das ferrovias e a expansão da
+          malha rodoviária<sup class="ref"><a id="ref-2" href="#nota-2">[2]</a></sup>.
+        </p>
+        <p>
+          Entre as figuras associadas à formação e ao desenvolvimento institucional de municípios da
+          região está <a href="artigo-vicente-de-paula-vieira.html">Vicente de Paula Vieira</a>,
+          o Barão da Rifaina (1833–1895), ligado à história de Sacramento (MG)
+          <sup class="ref"><a id="ref-3" href="#nota-3">[3]</a></sup>.
+        </p>
+
+        <details id="cronologia-tm">
+          <summary><h3>2.1 Cronologia resumida</h3></summary>
+          <table class="wikitable" data-ordenavel>
+            <caption>Principais marcos da ocupação e formação administrativa da região</caption>
+            <thead><tr><th scope="col">Ano</th><th scope="col">Acontecimento</th></tr></thead>
+            <tbody>
+              <tr><td>Até o séc. XVIII</td><td>Território habitado por povos indígenas, entre eles os Caiapós.</td></tr>
+              <tr><td>1722</td><td>Abertura da rota de Bartolomeu Bueno da Silva (Anhanguera) rumo a Goiás, atravessando a região.</td></tr>
+              <tr><td>1743</td><td>Fundação do povoado de Desemboque, primeiro núcleo não indígena da região.</td></tr>
+              <tr><td>1748–1811</td><td>Território ligado à capitania/província de Goiás, sob o nome de "Julgado do Desemboque".</td></tr>
+              <tr><td>1811</td><td>Divisão em Julgado do Desemboque e Julgado de Araxá.</td></tr>
+              <tr><td>1816</td><td>Araxá é incorporada ao território de Minas Gerais.</td></tr>
+              <tr><td>1830</td><td>Araxá é elevada à categoria de município.</td></tr>
+              <tr><td>1836</td><td>Uberaba separa-se de Araxá e torna-se município, já no ciclo da pecuária.</td></tr>
+              <tr><td>1842</td><td>Patrocínio emancipa-se, no contexto do café e da expansão pecuária.</td></tr>
+              <tr><td>1868</td><td>Patos de Minas emancipa-se de Patrocínio.</td></tr>
+              <tr><td>1880–1890</td><td>Expansão da Estrada de Ferro Mogiana; Araguari torna-se principal polo ferroviário regional.</td></tr>
+              <tr><td>1888</td><td>Vicente de Paula Vieira recebe o título de Barão da Rifaina (decreto imperial de 11 de setembro).</td></tr>
+              <tr><td>Séc. XX (meados)</td><td>Declínio das ferrovias; deslocamento do eixo logístico de Araguari para Uberlândia.</td></tr>
+              <tr><td>2017</td><td>IBGE reorganiza as divisões regionais do país, criando as atuais "regiões geográficas imediatas".</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:0.8rem; color:var(--tinta-suave);">
+            Cronologia elaborada a partir de fontes secundárias (ver Referências) e reescrita com
+            palavras próprias — não é uma cópia de nenhuma fonte única. Datas de fundação e
+            emancipação de municípios específicos podem ser aprofundadas nos registros civis e
+            paroquiais indexados por acervos genealógicos como o
+            <a href="https://www.familysearch.org/">FamilySearch</a>, úteis para cruzar nomes de
+            famílias fundadoras com os registros oficiais de cada comarca.
+          </p>
+        </details>
+      </section>
+    </details>
+
+    <details open id="economia">
+      <summary><div class="titulo-secao"><h2>3. Economia <a class="link-editar-secao" href="editar-triangulo-mineiro.html?secao=economia">[editar]</a></h2></div></summary>
+      <section>
+        <p>
+          A economia regional apoia-se em três eixos principais: a pecuária, com forte presença de
+          rebanhos <a href="artigo-zebu-e-a-expozebu.html">zebuínos</a>; a
+          agricultura de grãos, sobretudo soja e milho; e um parque industrial e de serviços
+          concentrado nos maiores centros urbanos.
+        </p>
+        <table class="wikitable" data-ordenavel>
+          <caption>Principais atividades econômicas por polo (ilustrativo)</caption>
+          <thead>
+            <tr><th scope="col">Cidade</th><th scope="col">Atividade de destaque</th><th scope="col">Observação</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Uberlândia</td><td>Logística e indústria</td><td>Polo universitário</td></tr>
+            <tr><td>Uberaba</td><td>Pecuária zebuína</td><td>Sede da ExpoZebu</td></tr>
+            <tr><td>Araxá</td><td>Mineração e turismo termal</td><td>Águas termais</td></tr>
+            <tr><td>Ituiutaba</td><td>Agricultura de grãos</td><td>Região do Pontal</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </details>
+
+    <details open id="demografia-e-cidades">
+      <summary><div class="titulo-secao"><h2>4. Demografia e cidades <a class="link-editar-secao" href="editar-triangulo-mineiro.html?secao=demografia">[editar]</a></h2></div></summary>
+      <section>
+        <p>
+          A região reúne dezenas de municípios de pequeno e médio porte, além de dois centros
+          maiores — Uberlândia e Uberaba — que concentram parcela expressiva da população e da
+          atividade econômica regional <sup class="cn"><a href="ajuda-citacao.html">[citação necessária]</a></sup>.
+        </p>
+        <ul class="galeria">
+          <li><figure><svg viewBox="0 0 100 70"><rect width="100" height="70" fill="var(--papel-3)"></rect><rect y="45" width="100" height="25" fill="var(--terra-roxa)" opacity="0.6"></rect></svg><figcaption>Uberlândia</figcaption></li>
+          <li><figure><svg viewBox="0 0 100 70"><rect width="100" height="70" fill="var(--papel-3)"></rect><rect y="45" width="100" height="25" fill="var(--cerrado)" opacity="0.6"></rect></svg><figcaption>Uberaba</figcaption></li>
+          <li><figure><svg viewBox="0 0 100 70"><rect width="100" height="70" fill="var(--papel-3)"></rect><rect y="45" width="100" height="25" fill="var(--anil)" opacity="0.6"></rect></svg><figcaption>Araxá</figcaption></li>
+        </ul>
+      </section>
+    </details>
+
+    <details open id="cultura">
+      <summary><div class="titulo-secao"><h2>5. Cultura <a class="link-editar-secao" href="editar-triangulo-mineiro.html?secao=cultura">[editar]</a></h2></div></summary>
+      <section>
+        <p>
+          A gastronomia regional compartilha traços da cozinha mineira, com pratos como o
+          <a href="artigo-pao-de-queijo.html">pão de queijo</a>, o doce de leite e a
+          pamonha. Festas religiosas e agropecuárias, como a
+          <abbr title="Exposição Agropecuária de Uberaba">ExpoZebu</abbr>, também marcam o
+          calendário cultural.
+        </p>
+      </section>
+    </details>
+
+    <details open id="infraestrutura">
+      <summary><div class="titulo-secao"><h2>6. Infraestrutura <a class="link-editar-secao" href="editar-triangulo-mineiro.html?secao=infraestrutura">[editar]</a></h2></div></summary>
+      <section>
+        <p>
+          A malha rodoviária federal e estadual conecta a região aos eixos Sudeste–Centro-Oeste do
+          Brasil. Historicamente, a <a href="artigo-estrada-de-ferro-mogiana.html">Estrada de Ferro
+          Mogiana</a> teve papel central no escoamento agrícola antes da expansão rodoviária.
+        </p>
+      </section>
+    </details>
+
+    <details open id="ver-tambem">
+      <summary><div class="titulo-secao"><h2>Ver também</h2></div></summary>
+      <section>
+        <ul>
+          <li><a href="artigo-cerrado.html">Cerrado</a></li>
+          <li><a href="artigo-uberlandia.html">Uberlândia</a></li>
+          <li><a href="artigo-uberaba.html">Uberaba</a></li>
+        </ul>
+      </section>
+    </details>
+
+    <section id="notas">
+      <div class="titulo-secao"><h2>Notas</h2></div>
+      <p style="font-size:0.85rem;">Seção reservada a esclarecimentos pontuais do texto. Nenhuma nota registrada até o momento.</p>
+    </section>
+
+    <section id="referencias">
+      <div class="titulo-secao"><h2>Referências</h2></div>
+      <ol class="referencias">
+        <li id="nota-1"><a href="#ref-1">↑</a> <cite>Instituto Nacional de Meteorologia (INMET)</cite>. Normais climatológicas. [fonte a completar].</li>
+        <li id="nota-2"><a href="#ref-2">↑</a> <cite>Wikipédia, a enciclopédia livre</cite>. "Triângulo Mineiro" (consultado em 2026), usado como fonte terciária para a cronologia de ocupação e emancipações — texto reescrito com palavras próprias nesta seção. <a href="https://pt.wikipedia.org/wiki/Tri%C3%A2ngulo_Mineiro">pt.wikipedia.org/wiki/Triângulo_Mineiro</a>.</li>
+        <li id="nota-3"><a href="#ref-3">↑</a> <cite>Instituto Barão da Rifaina</cite>. Vicente de Paula Vieira e a história de Sacramento. [fonte a completar].</li>
+        <li><cite>IBGE</cite>. Divisão regional do Brasil. <a href="https://www.ibge.gov.br/">ibge.gov.br</a>.</li>
+        <li id="nota-4"><a href="#ref-4">↑</a> Área de 93.500 km²: <cite>Wikipedia (em inglês)</cite>, "Triângulo Mineiro". <a href="https://en.wikipedia.org/wiki/Tri%C3%A2ngulo_Mineiro">en.wikipedia.org/wiki/Triângulo_Mineiro</a>. População "mais de dois milhões de habitantes, cerca de 11% da população de Minas Gerais": <cite>Wikipédia, a enciclopédia livre</cite>, "Triângulo Mineiro". <a href="https://pt.wikipedia.org/wiki/Tri%C3%A2ngulo_Mineiro">pt.wikipedia.org/wiki/Triângulo_Mineiro</a>.</li>
+        <li><cite>IPHAN</cite>. Patrimônio histórico de Minas Gerais. <a href="https://www.gov.br/iphan/">gov.br/iphan</a>.</li>
+        <li><cite>Universidade Federal de Uberlândia</cite>. Estudos regionais do Triângulo Mineiro. [fonte a completar].</li>
+        <li><cite>Universidade Federal do Triângulo Mineiro</cite>. Publicações institucionais. [fonte a completar].</li>
+        <li><cite>Secretaria de Estado de Agricultura de Minas Gerais</cite>. Panorama do agronegócio regional. [fonte a completar].</li>
+      </ol>
+    </section>
+
+    <section id="ligacoes-externas">
+      <div class="titulo-secao"><h2>Ligações externas</h2></div>
+      <ul>
+        <li><a href="https://www.ibge.gov.br/">Instituto Brasileiro de Geografia e Estatística (IBGE)</a></li>
+        <li><a href="https://www.gov.br/iphan/">Instituto do Patrimônio Histórico e Artístico Nacional (IPHAN)</a></li>
+        <li><a href="https://www.familysearch.org/">FamilySearch</a> — acervo genealógico gratuito, útil para cruzar registros civis e paroquiais de famílias da região.</li>
+        <li><a href="https://pt.wikipedia.org/wiki/Tri%C3%A2ngulo_Mineiro">Triângulo Mineiro na Wikipédia em português</a></li>
+      </ul>
+    </section>
+
+    <details class="navbox">
+      <summary>Municípios e temas relacionados ao Triângulo Mineiro</summary>
+      <table>
+        <tr><th scope="row">Cidades</th><td>
+          <a href="artigo-uberlandia.html">Uberlândia</a> ·
+          <a href="artigo-uberaba.html">Uberaba</a> ·
+          <a href="artigo-araxa.html">Araxá</a> ·
+          <a href="artigo-frutal.html">Frutal</a> ·
+          <a href="artigo-ituiutaba.html">Ituiutaba</a> ·
+          <a href="artigo-sacramento-mg.html">Sacramento (MG)</a>
+        </td></tr>
+        <tr><th scope="row">Geografia</th><td>
+          <a href="artigo-rio-grande.html">Rio Grande</a> ·
+          <a href="artigo-rio-paranaiba.html">Rio Paranaíba</a> ·
+          <a href="artigo-cerrado.html">Cerrado</a>
+        </td></tr>
+        <tr><th scope="row">Cultura e economia</th><td>
+          <a href="artigo-zebu-e-a-expozebu.html">Zebu e a ExpoZebu</a> ·
+          <a href="artigo-pao-de-queijo.html">Pão de queijo</a> ·
+          <a href="artigo-estrada-de-ferro-mogiana.html">Estrada de Ferro Mogiana</a>
+        </td></tr>
+      </table>
+    </details>
+
+    <nav class="catlinks" aria-label="Categorias">
+      <p><strong>Categorias:</strong></p>
+      <ul>
+        <li><a href="categoria-geografia.html">Geografia de Minas Gerais</a></li>
+        <li><a href="categoria-historia.html">História de Minas Gerais</a></li>
+        <li><a href="categoria-cidades.html">Regiões do Brasil</a></li>
+      </ul>
+      <details>
+        <summary>Categorias ocultas</summary>
+        <ul><li><a href="categoria-esbocos.html">!Páginas com afirmações sem fonte</a></li></ul>
+      </details>
+    </nav>
+
+    <p style="font-size:0.85rem;"><a href="#topo">↑ Voltar ao topo</a></p>
+  </main>
+</div>
+
+<!-- ============ 6. RODAPÉ ============ -->
+<footer class="rodape">
+  <div class="envolucro-largo">
+    <p class="aviso-independente">
+      Última edição desta página em <time datetime="2026-09-18">18 de setembro de 2026</time>.
+      Conteúdo disponível sob licença de reutilização livre com atribuição. A
+      <strong>TriânguloLeaks</strong> é um projeto independente, sem vínculo com a Fundação
+      Wikimedia. <a href="projeto-privacidade.html">Privacidade</a> ·
+      <a href="projeto-termos.html">Termos</a> · <a href="projeto-sobre.html">Sobre</a>
+    </p>
+  </div>
+</footer>
+
+<dialog id="dialogo-citar" aria-labelledby="titulo-dialogo-citar">
+  <div class="dialogo-corpo">
+    <h2 id="titulo-dialogo-citar">Citar "Triângulo Mineiro"</h2>
+    <label for="cite-abnt">ABNT</label>
+    <textarea id="cite-abnt" readonly rows="3">TRIÂNGULO MINEIRO. In: TRIÂNGULOLEAKS: a enciclopédia do Triângulo Mineiro. [S. l.], 2026. Disponível em: artigo-triangulo-mineiro.html. Acesso em: 19 set. 2026.</textarea>
+    <button type="button" data-tp-copiar="#cite-abnt">Copiar</button>
+    <div class="dialogo-acoes">
+      <form method="dialog"><button type="submit" class="botao secundario">Fechar</button></form>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dialogo-infopagina" aria-labelledby="titulo-dialogo-info">
+  <div class="dialogo-corpo">
+    <h2 id="titulo-dialogo-info">Informações da página</h2>
+    <dl>
+      <dt>Título</dt><dd>Triângulo Mineiro</dd>
+      <dt>Tamanho aproximado</dt><dd>7,4 kB</dd>
+      <dt>Nº de referências</dt><dd>8</dd>
+      <dt>Última edição</dt><dd><time datetime="2026-09-18">18/09/2026</time></dd>
+    </dl>
+    <form method="dialog"><button type="submit" class="botao secundario">Fechar</button></form>
+  </div>
+</dialog>
+
+<script src="js/estado.js" defer></script>
+<script src="js/dialogos.js" defer></script>
+</body>
+</html>
