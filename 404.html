@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+  Página gerada a partir do mesmo padrão estrutural de
+  index.html e artigo-triangulo-mineiro.html (barra pessoal →
+  cabeçalho → abas/lateral → main → rodapé). Descrição completa
+  de cada bloco e função em ESTRUTURA-DO-PROJETO.md.
+-->
+<!-- ÍNDICE DA PÁGINA (gerado/mantido em lote — ver ESTRUTURA-DO-PROJETO.md) -->
+<!--
+  1. Metadados: charset, título, viewport, favicon e folhas de estilo
+     (tokens/base/layout/componentes — sem CSP declarada nem
+     print.css, ao contrário das demais páginas do site) +
+     js/tema.js.
+  2. .ladrilho — faixa decorativa (topo).
+  3. Cabeçalho simplificado: logo/link para a página principal e
+     botão de alternância de tema — sem barra pessoal nem campo de
+     busca.
+  4. main.conteudo-principal (largura limitada, sem lateral nem
+     rodapé): título "Página não encontrada", mensagem de erro e
+     links de volta para a página principal e para a busca.
+  5. Script único no fim do body: js/estado.js.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Página não encontrada — TriânguloLeaks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/componentes.css">
+<script src="js/tema.js"></script>
+</head>
+<body>
+<div class="ladrilho" aria-hidden="true"></div>
+<header class="cabecalho">
+  <a class="logo-link" href="index.html">
+    <svg width="36" height="36" viewBox="0 0 100 100" role="img" aria-label="TriânguloLeaks"><circle cx="50" cy="50" r="48" fill="var(--terra-roxa)"></circle><polygon points="50,22 72,62 28,62" fill="var(--latao)" stroke="var(--papel)" stroke-width="2"></polygon></svg>
+    <span class="nome-projeto" style="font-size:1.1rem;">TriânguloLeaks</span>
+  </a>
+  <button type="button" class="botao-tema" data-tp-alternar-tema aria-label="Alternar entre tema claro e escuro" title="Alternar tema claro/escuro">
+    <svg class="icone-tema-sol" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.2" y1="4.2" x2="5.6" y2="5.6"></line><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.2" y1="19.8" x2="5.6" y2="18.4"></line><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"></line>
+      </g>
+    </svg>
+    <svg class="icone-tema-lua" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" fill="currentColor"></path>
+    </svg>
+  </button>
+</header>
+<main class="conteudo-principal" style="max-width:40rem; margin:0 auto;">
+  <h1>Página não encontrada</h1>
+  <p>O endereço acessado não corresponde a nenhuma página da TriânguloLeaks.</p>
+  <p><a href="index.html">Voltar à página principal</a> ou <a href="busca.html">pesquisar um artigo</a>.</p>
+</main>
+<script src="js/estado.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+  Página gerada a partir do mesmo padrão estrutural de
+  index.html e artigo-triangulo-mineiro.html (barra pessoal →
+  cabeçalho → abas/lateral → main → rodapé). Descrição completa
+  de cada bloco e função em ESTRUTURA-DO-PROJETO.md.
+
+  Explica os dois usos da palavra "citar" no site: (a) como CITAR um
+  artigo da TriânguloLeaks em outro trabalho (o diálogo "Citar esta
+  página", já presente nos artigos completos) e (b) como inserir uma
+  REFERÊNCIA/fonte dentro de um artigo ao editá-lo (<ref>...</ref>).
+-->
+<!-- ÍNDICE DA PÁGINA (gerado/mantido em lote — ver ESTRUTURA-DO-PROJETO.md) -->
+<!--
+  1. Metadados e cabeçalho HTTP: charset, título, viewport, CSP,
+     canonical, favicon e folhas de estilo (tokens/base/layout/
+     componentes/print) + js/tema.js.
+  2. .ladrilho + barra pessoal (atalhos globais e Entrar/Criar
+     conta).
+  3. Cabeçalho: logo/link para a página principal + botão de tema
+     (sem campo de busca).
+  4. Lateral de navegação (desktop e versão em <details> no mobile):
+     link para a página principal e para a Central de ajuda.
+  5. main#conteudo — as duas seções da página:
+     5.1. "Citar um artigo da TriânguloLeaks em outro trabalho":
+          como usar o diálogo "Citar esta página" dos artigos
+          completos, com exemplo de citação no formato ABNT.
+     5.2. "Citar uma fonte DENTRO de um artigo (ao editar)": exemplo
+          de marcação &lt;ref&gt;...&lt;/ref&gt; e como ela vira nota
+          de rodapé numerada, com link para Ajuda:Como editar.
+  6. Rodapé com aviso de independência e link para licenciamento de
+     imagens.
+  7. Scripts finais: js/estado.js e js/dialogos.js.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Ajuda:Como citar uma fonte — TriânguloLeaks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<link rel="canonical" href="ajuda-citacao.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/print.css" media="print">
+<script src="js/tema.js"></script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<div class="ladrilho" aria-hidden="true"></div>
+<div class="barra-pessoal">
+  <div class="envolucro envolucro-largo">
+    <ul>
+      <li><a href="especial-todas-as-paginas.html">Todos os artigos</a></li>
+      <li><a href="especial-mudancas-recentes.html">Mudanças recentes</a></li>
+      <li><a href="especial-mais-visitados.html">Mais visitados</a></li>
+      <li><a href="especial-linha-do-tempo.html">Linha do tempo</a></li>
+      <li><a href="conta-contribuicoes.html">Contribuições</a></li>
+    </ul>
+    <ul data-tp-area-conta>
+      <li><a href="conta-entrar.html">Entrar</a></li>
+      <li><a href="conta-criar.html">Criar conta</a></li>
+    </ul>
+  </div>
+</div>
+
+<header class="cabecalho">
+  <a class="logo-link" href="index.html">
+    <svg width="36" height="36" viewBox="0 0 100 100" role="img" aria-label="TriânguloLeaks"><circle cx="50" cy="50" r="48" fill="var(--terra-roxa)"></circle><polygon points="50,22 72,62 28,62" fill="var(--latao)" stroke="var(--papel)" stroke-width="2"></polygon></svg>
+    <span class="nome-projeto" style="font-size:1.1rem;">TriânguloLeaks</span>
+  </a>
+  <button type="button" class="botao-tema" data-tp-alternar-tema aria-label="Alternar entre tema claro e escuro" title="Alternar tema claro/escuro">
+    <svg class="icone-tema-sol" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.2" y1="4.2" x2="5.6" y2="5.6"></line><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.2" y1="19.8" x2="5.6" y2="18.4"></line><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"></line>
+      </g>
+    </svg>
+    <svg class="icone-tema-lua" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" fill="currentColor"></path>
+    </svg>
+  </button>
+</header>
+
+<div class="corpo envolucro-largo">
+  <aside class="lateral lateral-desktop"><details open><summary>Navegação</summary><ul><li><a href="index.html">Página principal</a></li><li><a href="ajuda-index.html">Central de ajuda</a></li></ul></details></aside>
+  <details class="menu-mobile"><summary>Menu</summary><aside class="lateral"><ul><li><a href="index.html">Página principal</a></li></ul></aside></details>
+
+  <main id="conteudo" class="conteudo-principal">
+    <h1>Ajuda:Como citar uma fonte</h1>
+    <p class="lead">A palavra "citar" aparece de duas formas diferentes no site — esta página explica as duas.</p>
+
+    <details open>
+      <summary><div class="titulo-secao"><h2>1. Citar um artigo da TriânguloLeaks em outro trabalho</h2></div></summary>
+      <section>
+        <p>
+          Todo artigo completo tem um link <strong>"Citar esta página"</strong> na barra lateral,
+          que abre um diálogo com o texto já pronto nos formatos ABNT e um link direto — basta
+          clicar em "Copiar".
+        </p>
+        <p>Exemplo de citação ABNT gerada automaticamente:</p>
+        <p style="font-family:monospace; font-size:0.85rem; background:var(--papel-2); padding:0.75rem; border-radius:4px;">
+          TRIÂNGULO MINEIRO. In: TRIÂNGULOLEAKS. [S. l.], 2026. Disponível em:
+          artigo-triangulo-mineiro.html. Acesso em: [data de acesso].
+        </p>
+      </section>
+    </details>
+
+    <details open>
+      <summary><div class="titulo-secao"><h2>2. Citar uma fonte DENTRO de um artigo (ao editar)</h2></div></summary>
+      <section>
+        <p>
+          Ao escrever ou editar um artigo, toda afirmação factual (uma data, um número, um evento)
+          deveria vir acompanhada de uma referência, usando a marcação <code>&lt;ref&gt;...&lt;/ref&gt;</code>
+          logo depois da frase:
+        </p>
+        <p style="font-family:monospace; font-size:0.85rem; background:var(--papel-2); padding:0.75rem; border-radius:4px;">
+          A cidade tornou-se município em 1888.&lt;ref&gt;Wikipédia, a enciclopédia livre.
+          "Nome do artigo" (consultado em 2026). https://pt.wikipedia.org/wiki/Nome_do_artigo&lt;/ref&gt;
+        </p>
+        <p>
+          Isso gera automaticamente um número sobrescrito clicável no texto (<sup>[1]</sup>) que
+          leva até a nota correspondente na seção "Referências", no fim do artigo. Nunca copie o
+          texto da fonte — resuma com suas próprias palavras e cite de onde veio a informação. Ver
+          também <a href="ajuda-editar.html">Ajuda:Como editar</a>.
+        </p>
+      </section>
+    </details>
+  </main>
+</div>
+
+<footer class="rodape"><div class="envolucro-largo">
+  <p class="aviso-independente">A <strong>TriânguloLeaks</strong> é um projeto independente, sem vínculo com a Fundação Wikimedia. Todas as imagens e ilustrações do site são de uso e distribuição livres — ver <a href="ajuda-licenciamento-imagens.html">licenciamento de imagens</a>.</p>
+</div></footer>
+
+<script src="js/estado.js" defer></script>
+<script src="js/dialogos.js" defer></script>
+</body>
+</html>

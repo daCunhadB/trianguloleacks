@@ -1,0 +1,88 @@
+/* ===========================================================
+   print.css — versão para impressão / exportar PDF
+   ===========================================================
+   ÍNDICE DESTE ARQUIVO
+     1. seletor de ocultação        → esconde barra pessoal, abas,
+        lateral, menus, diálogos e controles que não fazem
+        sentido em papel (botão imprimir, estrela de vigiar…)
+     2. .corpo / .conteudo-principal → remove a grade de 2 colunas,
+        o conteúdo passa a ocupar 100% da largura da folha
+     3. body / h1-h3 / a            → tipografia serifada em preto
+        e sublinhado nos links (cor não é visível no papel)
+     4. a[href^="http"]::after      → imprime a URL por extenso ao
+        lado do link, já que não é possível clicar no papel
+     5. .infobox                    → infobox deixa de flutuar e
+        ocupa a largura da página
+     6. .caixa-aviso, table, figure, section → evita quebras de
+        página no meio de um bloco (break-inside/avoid-page)
+     7. .rodape                     → rodapé simplificado
+     8. @page                       → margem da folha impressa
+   =========================================================== */
+@media print {
+  /* 1. Seletor de ocultação → esconde barra pessoal, abas, lateral,
+     menus, diálogos e controles que não fazem sentido em papel
+     (botão imprimir, estrela de vigiar…) */
+  .barra-pessoal, .abas-nav, .lateral, .menu-mobile,
+  .ladrilho, .busca-form, .catlinks .editar,
+  .link-editar-secao, .ancora-secao, .pular,
+  .estrela-rotulo, dialog, [popover], .aviso-simulacao,
+  .ferramentas-pagina, .imprimir-botao {
+    display: none !important;
+  }
+
+  /* 2. .corpo / .conteudo-principal → remove a grade de 2 colunas,
+     o conteúdo passa a ocupar 100% da largura da folha */
+  .corpo { display: block; }
+  .conteudo-principal { padding: 0; max-width: none; }
+
+  /* 3. body / h1-h3 / a → tipografia serifada em preto e sublinhado
+     nos links (cor não é visível no papel) */
+  body {
+    background: #fff;
+    color: #000;
+    font-family: "Linux Libertine", Georgia, "Times New Roman", serif;
+    font-size: 12pt;
+  }
+
+  h1, h2, h3 { color: #000; font-family: "Linux Libertine", Georgia, serif; }
+
+  a { color: #000; text-decoration: underline; }
+  a:visited { color: #000; }
+
+  /* 4. a[href^="http"]::after → imprime a URL por extenso ao lado
+     do link, já que não é possível clicar no papel */
+  a[href^="http"]::after,
+  a[href^="https"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    color: #333;
+  }
+
+  /* 5. .infobox → infobox deixa de flutuar e ocupa a largura da página */
+  .infobox {
+    float: none;
+    width: 100%;
+    border: 1px solid #000;
+  }
+
+  /* 6. .caixa-aviso, table, figure, section → evita quebras de
+     página no meio de um bloco (break-inside/avoid-page) */
+  .caixa-aviso, table, figure {
+    break-inside: avoid;
+  }
+
+  section {
+    break-inside: avoid-page;
+  }
+
+  /* 7. .rodape → rodapé simplificado */
+  .rodape {
+    border-top: 1px solid #000;
+    font-size: 9pt;
+  }
+
+  /* 8. @page → margem da folha impressa */
+  @page {
+    margin: 2cm;
+  }
+}
