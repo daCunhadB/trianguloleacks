@@ -37,8 +37,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Privacidade — TriânguloLeaks</title>
+<meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; form-action 'self'; base-uri 'none'; object-src 'none'">
 <link rel="canonical" href="projeto-privacidade.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/tokens.css">
@@ -58,6 +59,7 @@
       <li><a href="especial-mudancas-recentes.html">Mudanças recentes</a></li>
       <li><a href="especial-mais-visitados.html">Mais visitados</a></li>
       <li><a href="especial-linha-do-tempo.html">Linha do tempo</a></li>
+      <li><a href="especial-genealogia.html">Genealogia</a></li>
       <li><a href="conta-contribuicoes.html">Contribuições</a></li>
     </ul>
     <ul data-tp-area-conta>
@@ -152,6 +154,80 @@
       </section>
     </details>
 
+
+    <details open id="aprendizado">
+      <summary><div class="titulo-secao"><h2>Aprendizado local: sugestões e ordem da busca</h2></div></summary>
+      <section>
+        <p>
+          Desde a atualização de 2026, o site passou a <strong>aprender com o seu uso</strong> para
+          sugerir artigos na página inicial e ordenar melhor os resultados de busca. É importante
+          ser exato sobre o que isso significa aqui: o cálculo acontece <strong>inteiramente no seu
+          navegador</strong>, com dados que nunca saem dele. O site continua sendo um conjunto de
+          arquivos estáticos — não existe servidor, conta remota ou serviço de terceiros recebendo
+          nada disso.
+        </p>
+        <p>O que é guardado (em <code>tp:aprendizado</code>, no <code>localStorage</code>):</p>
+        <ul>
+          <li>os <em>slugs</em> dos artigos que você abriu, com data e hora (máximo de 200, os mais antigos são descartados);</li>
+          <li>os termos que você digitou na busca (máximo de 100) e os filtros usados;</li>
+          <li>quantas vezes você clicou em cada resultado.</li>
+        </ul>
+        <p>
+          A partir disso o site monta um perfil de pesos por categoria, palavra-chave e local, dando
+          menos importância ao que é antigo (um registro vale cerca de metade depois de 30 dias).
+          Esse perfil é usado em dois lugares: a faixa “Sugestões para você”, na página inicial, e a
+          reordenação dos resultados da busca — que avisa, quando reordena, que está usando o seu
+          histórico local.
+        </p>
+        <p>
+          Nada disso é necessário para usar o site: com o JavaScript desativado, ou depois de apagar
+          os dados abaixo, tudo continua funcionando, apenas sem personalização.
+        </p>
+        <div id="perfil-aprendizado"><p>Carregando o resumo do seu perfil local…</p></div>
+      </section>
+    </details>
+
+    <details open>
+      <summary><div class="titulo-secao"><h2>O que este navegador guarda agora (e como apagar)</h2></div></summary>
+      <section>
+        <p>
+          A tabela abaixo é gerada ao vivo, lendo o <code>localStorage</code> deste navegador neste
+          instante. Os botões agem só aqui, no seu dispositivo.
+        </p>
+        <div id="inventario-local"><p>Lendo o armazenamento local…</p></div>
+        <p>
+          <button type="button" id="apagar-aprendizado" class="secundario">Apagar só o perfil de leitura</button>
+          <button type="button" id="baixar-dados" class="secundario">Baixar uma cópia (JSON)</button>
+          <button type="button" id="apagar-tudo">Apagar todos os dados locais do site</button>
+        </p>
+        <p id="aviso-privacidade" role="status" hidden></p>
+        <p style="font-size:0.85rem;">
+          Apagar aqui equivale a limpar os dados do site pelo próprio navegador; como nada é enviado
+          para fora, não existe “cópia no servidor” a ser pedida ou excluída depois.
+        </p>
+      </section>
+    </details>
+
+    <details open>
+      <summary><div class="titulo-secao"><h2>Login com Google, Microsoft e Apple</h2></div></summary>
+      <section>
+        <p>
+          Se o administrador do site configurar as credenciais correspondentes, os botões de entrar
+          com Google, Microsoft (Outlook) e Apple passam a fazer autenticação <strong>real</strong>,
+          em janela do próprio provedor. Nesse fluxo: o site recebe do provedor um token assinado e
+          o verifica (no caso da Apple, conferindo a assinatura contra as chaves públicas oficiais);
+          o que fica guardado depois é apenas nome e e-mail, no seu navegador, como qualquer outro
+          dado desta página. A sua senha nunca passa por este site — ela é digitada no próprio
+          provedor.
+        </p>
+        <p>
+          O botão “Protonmail” é, deliberadamente, uma <strong>simulação rotulada como tal</strong>:
+          não existe hoje um serviço público de “Login com Proton” para sites de terceiros, e fingir
+          que existe seria enganar quem usa o site. Ver <a href="projeto-seguranca.html">Segurança</a>.
+        </p>
+      </section>
+    </details>
+
     <details>
       <summary><div class="titulo-secao"><h2>Dúvidas</h2></div></summary>
       <section>
@@ -167,5 +243,9 @@
 
 <script src="js/estado.js" defer></script>
 <script src="js/dialogos.js" defer></script>
+<script src="js/recolher.js" defer></script>
+<script src="js/indice.js" defer></script>
+<script src="js/aprendizado.js" defer></script>
+<script src="js/privacidade-painel.js" defer></script>
 </body>
 </html>

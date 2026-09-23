@@ -5,40 +5,21 @@
   cabeçalho → abas/lateral → main → rodapé). Descrição completa
   de cada bloco e função em ESTRUTURA-DO-PROJETO.md.
 
-  Página de exemplo (mesmo caráter ilustrativo da seção "Eventos
-  atuais" da página principal) — um calendário real exigiria
-  atualização contínua, fora do escopo de um site estático sem
-  backend; fica marcada como exemplo, como já é feito em index.html.
--->
-<!-- ÍNDICE DA PÁGINA (gerado/mantido em lote — ver ESTRUTURA-DO-PROJETO.md) -->
-<!--
-  1. Metadados e cabeçalho HTTP padrão (charset, título, viewport,
-     CSP, canonical, favicon, folhas de estilo tokens/base/layout/
-     componentes/print) + js/tema.js.
-  2. .ladrilho + barra pessoal completa.
-  3. Cabeçalho: logo + botão de tema (sem campo de busca).
-  4. Lateral de navegação (desktop e mobile): apenas link para a
-     página principal.
-  5. main#conteudo:
-     5.1. h1 marcado "(exemplo)" e aviso-simulacao explicando que um
-          calendário real exigiria atualização contínua, fora do
-          alcance de um site estático.
-     5.2. <ul> com dois eventos de exemplo (datas em <time>, formato
-          ilustrativo).
-     5.3. Parágrafo de atalho para a página principal (âncora #topo)
-          e para Estatísticas.
-  6. Rodapé com aviso de independência e link para licenciamento de
-     imagens.
-  7. Scripts finais: js/estado.js e js/dialogos.js.
+  Lista COMPLETA gerada automaticamente a partir de js/indice.js
+  (todo item com tipo:"artigo") por
+  scratchpad/gerar_todas_paginas.py — sempre que novos artigos forem
+  criados e indexados, rode esse script de novo para regenerar esta
+  página. Continua inteiramente estática (sem depender de JavaScript
+  para funcionar), como exige o modo "sem JS" do site.
 -->
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Eventos atuais — TriânguloLeaks</title>
+<title>Especial:Especial:Genealogia — TriânguloLeaks</title>
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; form-action 'self'; base-uri 'none'; object-src 'none'">
-<link rel="canonical" href="projeto-eventos-atuais.html">
+<link rel="canonical" href="especial-genealogia.html">>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
@@ -57,7 +38,6 @@
       <li><a href="especial-mudancas-recentes.html">Mudanças recentes</a></li>
       <li><a href="especial-mais-visitados.html">Mais visitados</a></li>
       <li><a href="especial-linha-do-tempo.html">Linha do tempo</a></li>
-      <li><a href="especial-genealogia.html">Genealogia</a></li>
       <li><a href="conta-contribuicoes.html">Contribuições</a></li>
     </ul>
     <ul data-tp-area-conta>
@@ -89,24 +69,75 @@
 </header>
 
 <div class="corpo envolucro-largo">
-  <aside class="lateral lateral-desktop"><details open><summary>Navegação</summary><ul><li><a href="index.html">Página principal</a></li></ul></details></aside>
+  <aside class="lateral lateral-desktop"><details open><summary>Navegação</summary><ul><li><a href="index.html">Página principal</a></li><li><a href="busca.html">Pesquisar</a></li></ul></details></aside>
   <details class="menu-mobile"><summary>Menu</summary><aside class="lateral"><ul><li><a href="index.html">Página principal</a></li></ul></aside></details>
 
   <main id="conteudo" class="conteudo-principal">
-    <h1>Eventos atuais <em style="font-size:0.65em; font-weight:400;">(exemplo)</em></h1>
-    <p class="aviso-simulacao">
-      Página ilustrativa: um calendário de eventos real precisaria de atualização contínua, fora
-      do alcance de um site inteiramente estático, sem servidor. As datas abaixo são apenas um
-      exemplo de formato.
+    <h1 id="topo">Especial:Genealogia</h1>
+    <p class="tagline">De TriânguloLeaks, a enciclopédia do Triângulo Mineiro</p>
+    <p class="lead">
+      Todas as pessoas do site que têm ficha genealógica, num só lugar — com os vínculos
+      familiares já cruzados entre os artigos. Busque por nome, por parente, por local de
+      nascimento ou por século; os filtros se combinam.
     </p>
 
-    <ul>
-      <li><time datetime="2026-09">Setembro de 2026</time> — Período de feiras agropecuárias regionais, como referência de calendário (exemplo ilustrativo).</li>
-      <li><time datetime="2026-10">Outubro de 2026 (exemplo)</time> — Semana de aniversário de municípios da região, comumente marcada por eventos culturais locais.</li>
-    </ul>
+    <aside class="caixa-aviso" role="note">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--latao)" stroke-width="2"></circle><text x="12" y="17" text-anchor="middle" font-size="12" fill="var(--latao)">i</text></svg>
+      <div>
+        <p>Os dados vêm dos próprios artigos e das fontes citadas em cada um. O
+        <cite>FamilySearch</cite> e o <cite>Family Tree</cite> <strong>não</strong> são consultados
+        aqui: os dois recusam acesso automatizado a partir do ambiente em que este site é mantido,
+        e o projeto não afirma números de registro que não pôde verificar. Onde a confirmação ainda
+        não foi possível, o artigo correspondente traz a marcação
+        <span class="verificar">[verificar]</span>.</p>
+      </div>
+    </aside>
 
-    <p style="font-size:0.85rem;">Ver também <a href="index.html#topo">a página principal</a> e <a href="especial-estatisticas.html">Estatísticas</a>.</p>
-  </main>
+    <section id="gen-estatisticas-secao">
+      <div class="titulo-secao"><h2>Panorama</h2></div>
+      <div id="gen-estatisticas"><p>Carregando…</p></div>
+    </section>
+
+    <section>
+      <div class="titulo-secao"><h2>Buscar</h2></div>
+      <form id="gen-form" class="busca-avancada">
+        <p>
+          <label for="gen-nome">Nome ou sobrenome</label><br>
+          <input type="search" id="gen-nome" name="nome" autocomplete="off" placeholder="ex.: Vieira">
+        </p>
+        <p>
+          <label for="gen-parente">Parente (pai, mãe, cônjuge ou pessoa ligada)</label><br>
+          <input type="search" id="gen-parente" name="parente" autocomplete="off" placeholder="ex.: Severino">
+        </p>
+        <p>
+          <label for="gen-local">Local de nascimento</label><br>
+          <select id="gen-local" name="local"><option value="">Qualquer local</option></select>
+        </p>
+        <p>
+          <label for="gen-seculo">Século</label><br>
+          <select id="gen-seculo" name="seculo"><option value="">Qualquer século</option></select>
+        </p>
+        <p>
+          <button type="submit">Filtrar</button>
+          <button type="button" id="gen-limpar" class="secundario">Limpar filtros</button>
+        </p>
+      </form>
+      <p id="gen-status" role="status"></p>
+      <div id="gen-resultado"><p>Carregando a lista de pessoas…</p></div>
+    </section>
+
+    <section>
+      <div class="titulo-secao"><h2>Ver também</h2></div>
+      <ul>
+        <li><a href="busca.html">Pesquisar (com filtros de genealogia)</a></li>
+        <li><a href="especial-linha-do-tempo.html">Linha do tempo</a></li>
+        <li><a href="categoria-pessoas.html">Categoria: Pessoas do Triângulo Mineiro</a></li>
+        <li><a href="artigo-vicente-de-paula-vieira.html">Vicente de Paula Vieira (Barão da Rifaina)</a></li>
+      </ul>
+    </section>
+
+    <p style="font-size:0.85rem;"><a href="#topo">↑ Voltar ao topo</a></p>
+  </main></main>
 </div>
 
 <footer class="rodape"><div class="envolucro-largo">
@@ -114,6 +145,8 @@
 </div></footer>
 
 <script src="js/estado.js" defer></script>
+<script src="js/indice.js" defer></script>
+<script src="js/genealogia.js" defer></script>
 <script src="js/dialogos.js" defer></script>
 <script src="js/recolher.js" defer></script>
 <script src="js/aprendizado.js" defer></script>

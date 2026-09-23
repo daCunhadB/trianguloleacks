@@ -2,37 +2,17 @@
 <!--
   Página de categoria gerada automaticamente a partir da varredura dos
   próprios artigos (seção "Categorias" no rodapé de cada um), seguindo
-  o mesmo padrão estrutural de categoria-cidades.html.
--->
-<!-- ÍNDICE DA PÁGINA (gerado/mantido em lote — ver ESTRUTURA-DO-PROJETO.md) -->
-<!--
-  1. Metadados e cabeçalho HTTP (charset, título, viewport, CSP,
-     canonical, favicon, folhas de estilo tokens/base/layout/
-     componentes/print) + js/tema.js.
-  2. .ladrilho + barra pessoal (atalhos globais e Entrar/Criar
-     conta).
-  3. Cabeçalho: logo + botão de tema (sem campo de busca).
-  4. Lateral de navegação (desktop e mobile): página principal e
-     Todas as categorias (especial-categorias.html).
-  5. main#conteudo:
-     5.1. Título "Categoria:Meio ambiente" e parágrafo descrevendo o
-          escopo (biomas e temas ambientais relacionados à região)
-          com a contagem entre parênteses (1 artigo).
-     5.2. Nav de atalhos alfabéticos (apenas a letra C, única com
-          artigo nesta categoria).
-     5.3. Lista <h2 id="letra-c">/<ul> com o único artigo: Cerrado.
-     5.4. <details class="navbox"> "Subcategorias" — sempre vazia
-          neste projeto (nenhuma subcategoria cadastrada).
-  6. Rodapé com aviso de independência e link para licenciamento de
-     imagens.
-  7. Scripts finais: js/estado.js e js/dialogos.js.
+  o mesmo padrão estrutural de categoria-cidades.html. Regenerada em
+  lote sempre que novos artigos entram no índice — ver
+  ESTRUTURA-DO-PROJETO.md.
 -->
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <title>Categoria:Meio ambiente — TriânguloLeaks</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; form-action 'self'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
 <link rel="canonical" href="categoria-meio-ambiente.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/tokens.css">
@@ -88,11 +68,16 @@
 
   <main id="conteudo" class="conteudo-principal">
     <h1>Categoria:Meio ambiente</h1>
-    <p>Biomas e temas ambientais relacionados à região. (1 artigos.)</p>
+    <p>Biomas, naturalistas e temas ambientais relacionados à região. (2 artigos.)</p>
 
     <nav aria-label="Navegação alfabética" style="margin-bottom:1rem; font-size:0.85rem;">
-      <a href="#letra-c">C</a>
+      <a href="#letra-a">A</a> · <a href="#letra-c">C</a>
     </nav>
+
+    <h2 id="letra-a">A</h2>
+    <ul>
+      <li><a href="artigo-auguste-de-saint-hilaire.html">Auguste de Saint-Hilaire</a></li>
+    </ul>
 
     <h2 id="letra-c">C</h2>
     <ul>
@@ -111,6 +96,8 @@
 </div></footer>
 
 <script src="js/estado.js" defer></script>
+<script src="js/recolher.js" defer></script>
+<script src="js/aprendizado.js" defer></script>
 <script src="js/dialogos.js" defer></script>
 </body>
 </html>

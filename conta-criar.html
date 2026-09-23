@@ -12,27 +12,32 @@
          js/passkeys.js
      4.1 Aviso: o que é real e o que ainda é simulação local
      4.2 Formulário de criação de conta local (simulado)
-     4.3 Botões de cadastro social — Google é REAL (js/login-google.js
-         + js/login-config.js); Microsoft/Apple/Proton continuam
-         simulados
+     4.3 Botões de cadastro social — Google, Microsoft e Apple são
+         REAIS (js/login-google.js, js/login-microsoft.js,
+         js/login-apple.js + js/login-config.js); Protonmail
+         continua simulado (sem OAuth público da Proton)
   5. .rodape            — aviso de independência do projeto
-  Mesma política de conta-entrar.html: Passkey e Google são
-  autenticação de verdade; o restante continua sendo uma simulação
-  local (nada é enviado a um servidor, que este site não tem).
+  Mesma política de conta-entrar.html: Passkey, Google, Microsoft e
+  Apple são autenticação de verdade; Protonmail e o formulário local
+  continuam sendo uma simulação local (nada é enviado a um servidor,
+  que este site não tem).
   ================================================================
 -->
 <!-- ÍNDICE DA PÁGINA (gerado/mantido em lote — ver ESTRUTURA-DO-PROJETO.md) -->
 <!--
-  1. Metadados e CSP (com exceções para accounts.google.com e
-     oauth2.googleapis.com, necessárias ao login real com Google) +
-     meta description específica + js/tema.js.
+  1. Metadados e CSP (com exceções para accounts.google.com/
+     oauth2.googleapis.com, alcdn.msauth.net/login.microsoftonline.com
+     e appleid.cdn-apple.com/appleid.apple.com, necessárias aos
+     logins reais com Google/Microsoft/Apple) + meta description
+     específica + js/tema.js.
   2. .ladrilho — faixa decorativa (esta página NÃO tem barra
      pessoal).
   3. Cabeçalho simplificado: logo/link para a página principal e
      botão de tema (sem campo de busca).
   4. main#conteudo (largura limitada a 26rem):
-     4.1. Aviso destacando o que é autenticação real (Passkey e
-          Google) e o que continua sendo simulação local.
+     4.1. Aviso destacando o que é autenticação real (Passkey,
+          Google, Microsoft, Apple) e o que continua sendo simulação
+          local.
      4.2. <fieldset id="fieldset-passkey-criar"> "Com chave de
           acesso (Passkey)" — REAL via WebAuthn (js/passkeys.js):
           nome de exibição, aviso de indisponibilidade (hidden),
@@ -40,26 +45,32 @@
      4.3. <form id="form-criar-conta"> "Com nome de usuário local"
           (simulado): usuário, e-mail e senha.
      4.4. #confirmacao-criar (hidden) — mensagem de sucesso.
-     4.5. .lista-login-social — botões de cadastro social: Google é
-          REAL (data-login-real="google", js/login-google.js +
-          js/login-config.js); Microsoft/Apple/Protonmail continuam
-          simulados, abrindo <dialog id="dialogo-login-social">.
+     4.5. .lista-login-social — botões de cadastro social: Google
+          (js/login-google.js), Microsoft (js/login-microsoft.js,
+          via MSAL.js) e Apple (js/login-apple.js, via Sign in with
+          Apple JS + verificação própria de assinatura JWKS) são
+          REAIS (data-login-real + js/login-config.js preenchido);
+          Protonmail continua simulado, abrindo <dialog
+          id="dialogo-login-social">.
      4.6. Link para conta-entrar.html ("Já tem uma conta?").
   5. Rodapé (parágrafo único, sem colunas) com aviso de
      independência, incluindo Google/Microsoft/Apple/Proton.
   6. <dialog id="dialogo-login-social"> explicando a simulação de
-     cadastro social.
+     cadastro social (só usado por Protonmail e pelos avisos de "não
+     configurado" de Google/Microsoft/Apple).
   7. Scripts finais: js/estado.js, js/dialogos.js,
      js/autocompletar.js, js/passkeys.js, js/login-config.js,
-     js/login-google.js, js/login-real.js e js/conta.js.
+     js/login-google.js, js/login-microsoft.js, js/login-apple.js,
+     js/login-real.js e js/conta.js.
 -->
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <title>Criar conta — TriânguloLeaks</title>
+<meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Criar conta na TriânguloLeaks com chave de acesso (Passkey), Google, ou um cadastro local simulado.">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://*.googleusercontent.com; style-src 'self' 'unsafe-inline'; script-src 'self' https://accounts.google.com; connect-src 'self' https://oauth2.googleapis.com; frame-src https://accounts.google.com">
+<meta name="description" content="Criar conta na TriânguloLeaks com chave de acesso (Passkey), Google, Microsoft, Apple ou um cadastro local simulado.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://*.googleusercontent.com; style-src 'self' 'unsafe-inline'; script-src 'self' https://accounts.google.com https://alcdn.msauth.net https://appleid.cdn-apple.com; connect-src 'self' https://oauth2.googleapis.com https://login.microsoftonline.com https://appleid.apple.com; frame-src https://accounts.google.com; form-action 'self'; base-uri 'none'; object-src 'none'">
 <link rel="canonical" href="conta-criar.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/tokens.css">
@@ -106,10 +117,11 @@
 
   <!-- ---- 4.1 Aviso: o que é real e o que ainda é local/simulado ---- -->
   <p class="aviso-simulacao">
-    <strong>Criar uma chave de acesso</strong> (abaixo) e <strong>Continuar com Google</strong> são
-    autenticação de verdade. Já o formulário "Com nome de usuário local" e os botões
-    Microsoft/Apple/Protonmail continuam sendo uma simulação local — nada é enviado a um servidor
-    ou a esses serviços.
+    <strong>Criar uma chave de acesso</strong> (abaixo), <strong>Google</strong>, <strong>Microsoft</strong>
+    e <strong>Apple</strong> são autenticação de verdade — quando configuradas pelo administrador do
+    site (ver js/login-config.js); sem configuração, o botão avisa claramente em vez de fingir um
+    cadastro. Já o formulário "Com nome de usuário local" e o botão <strong>Protonmail</strong> continuam
+    sendo uma simulação local — nada é enviado a um servidor ou a esses serviços.
   </p>
 
   <!-- ---- Criação de chave de acesso (Passkey/WebAuthn) — REAL ---- -->
@@ -167,13 +179,13 @@
       <span class="icone-social icone-social--google" aria-hidden="true">G</span>
       Continuar com Google
     </button>
-    <button type="button" class="botao-social" data-provedor="Microsoft">
+    <button type="button" class="botao-social" data-provedor="Microsoft" data-login-real="microsoft" id="botao-login-microsoft">
       <span class="icone-social icone-social--microsoft" aria-hidden="true">
         <svg viewBox="0 0 20 20" width="16" height="16"><rect x="1" y="1" width="8" height="8" fill="#f35325"/><rect x="11" y="1" width="8" height="8" fill="#81bc06"/><rect x="1" y="11" width="8" height="8" fill="#05a6f0"/><rect x="11" y="11" width="8" height="8" fill="#ffba08"/></svg>
       </span>
       Continuar com Microsoft (Outlook)
     </button>
-    <button type="button" class="botao-social" data-provedor="Apple">
+    <button type="button" class="botao-social" data-provedor="Apple" data-login-real="apple" id="botao-login-apple">
       <span class="icone-social icone-social--apple" aria-hidden="true"></span>
       Continuar com Apple
     </button>
@@ -211,7 +223,11 @@
 <script src="js/passkeys.js" defer></script>
 <script src="js/login-config.js" defer></script>
 <script src="js/login-google.js" defer></script>
+<script src="js/login-microsoft.js" defer></script>
+<script src="js/login-apple.js" defer></script>
 <script src="js/login-real.js" defer></script>
 <script src="js/conta.js" defer></script>
+<script src="js/recolher.js" defer></script>
+<script src="js/aprendizado.js" defer></script>
 </body>
 </html>

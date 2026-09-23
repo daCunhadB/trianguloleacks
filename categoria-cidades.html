@@ -1,41 +1,18 @@
 <!DOCTYPE html>
 <!--
-  Página gerada a partir do mesmo padrão estrutural de
-  index.html e artigo-triangulo-mineiro.html (barra pessoal →
-  cabeçalho → abas/lateral → main → rodapé). Descrição completa
-  de cada bloco e função em ESTRUTURA-DO-PROJETO.md.
--->
-<!-- ÍNDICE DA PÁGINA (gerado/mantido em lote — ver ESTRUTURA-DO-PROJETO.md) -->
-<!--
-  1. Metadados e cabeçalho HTTP (charset, título, viewport, CSP,
-     canonical, favicon, folhas de estilo tokens/base/layout/
-     componentes/print) + js/tema.js.
-  2. .ladrilho + barra pessoal (atalhos globais e Entrar/Criar
-     conta).
-  3. Cabeçalho: logo + botão de tema (sem campo de busca).
-  4. Lateral de navegação (desktop e mobile): página principal e
-     Todas as categorias (especial-categorias.html).
-  5. main#conteudo — página de categoria MODELO (as demais
-     categoria-*.html seguem o mesmo padrão):
-     5.1. Título "Categoria:Cidades" e parágrafo com a contagem de
-          municípios (66 municípios).
-     5.2. Nav de atalhos alfabéticos (âncoras para as 16 letras com
-          município nesta categoria: A, C, D, E, F, G, I, L, M, N,
-          P, R, S, T, U, V).
-     5.3. Listas <h2 id="letra-X">/<ul>, uma por letra, com os 66
-          municípios do Triângulo Mineiro e Alto Paranaíba.
-     5.4. <details class="navbox"> "Subcategorias" — sempre vazia
-          neste projeto (nenhuma subcategoria cadastrada).
-  6. Rodapé com aviso de independência e link para licenciamento de
-     imagens.
-  7. Scripts finais: js/estado.js e js/dialogos.js.
+  Página de categoria gerada automaticamente a partir da varredura dos
+  próprios artigos (seção "Categorias" no rodapé de cada um), seguindo
+  o mesmo padrão estrutural de categoria-cidades.html. Regenerada em
+  lote sempre que novos artigos entram no índice — ver
+  ESTRUTURA-DO-PROJETO.md.
 -->
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <title>Categoria:Cidades — TriânguloLeaks</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; form-action 'self'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
 <link rel="canonical" href="categoria-cidades.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/tokens.css">
@@ -91,7 +68,7 @@
 
   <main id="conteudo" class="conteudo-principal">
     <h1>Categoria:Cidades</h1>
-    <p>Municípios do Triângulo Mineiro e Alto Paranaíba com artigo na TriânguloLeaks (66 municípios).</p>
+    <p> (67 artigos.)</p>
 
     <nav aria-label="Navegação alfabética" style="margin-bottom:1rem; font-size:0.85rem;">
       <a href="#letra-a">A</a> · <a href="#letra-c">C</a> · <a href="#letra-d">D</a> · <a href="#letra-e">E</a> · <a href="#letra-f">F</a> · <a href="#letra-g">G</a> · <a href="#letra-i">I</a> · <a href="#letra-l">L</a> · <a href="#letra-m">M</a> · <a href="#letra-n">N</a> · <a href="#letra-p">P</a> · <a href="#letra-r">R</a> · <a href="#letra-s">S</a> · <a href="#letra-t">T</a> · <a href="#letra-u">U</a> · <a href="#letra-v">V</a>
@@ -100,11 +77,11 @@
     <h2 id="letra-a">A</h2>
     <ul>
       <li><a href="artigo-abadia-dos-dourados.html">Abadia dos Dourados</a></li>
-      <li><a href="artigo-agua-comprida.html">Água Comprida</a></li>
       <li><a href="artigo-araguari.html">Araguari</a></li>
       <li><a href="artigo-arapora.html">Araporã</a></li>
       <li><a href="artigo-arapua.html">Arapuá</a></li>
       <li><a href="artigo-araxa.html">Araxá</a></li>
+      <li><a href="artigo-agua-comprida.html">Água Comprida</a></li>
     </ul>
 
     <h2 id="letra-c">C</h2>
@@ -203,15 +180,16 @@
       <li><a href="artigo-santa-juliana.html">Santa Juliana</a></li>
       <li><a href="artigo-santa-rosa-da-serra.html">Santa Rosa da Serra</a></li>
       <li><a href="artigo-santa-vitoria.html">Santa Vitória</a></li>
+      <li><a href="artigo-serra-do-salitre.html">Serra do Salitre</a></li>
       <li><a href="artigo-sao-francisco-de-sales.html">São Francisco de Sales</a></li>
       <li><a href="artigo-sao-gotardo.html">São Gotardo</a></li>
-      <li><a href="artigo-serra-do-salitre.html">Serra do Salitre</a></li>
     </ul>
 
     <h2 id="letra-t">T</h2>
     <ul>
       <li><a href="artigo-tapira.html">Tapira</a></li>
       <li><a href="artigo-tiros.html">Tiros</a></li>
+      <li><a href="artigo-triangulo-mineiro.html">Triângulo Mineiro</a></li>
       <li><a href="artigo-tupaciguara.html">Tupaciguara</a></li>
     </ul>
 
@@ -239,6 +217,8 @@
 </div></footer>
 
 <script src="js/estado.js" defer></script>
+<script src="js/recolher.js" defer></script>
+<script src="js/aprendizado.js" defer></script>
 <script src="js/dialogos.js" defer></script>
 </body>
 </html>

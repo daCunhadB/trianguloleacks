@@ -12,12 +12,14 @@
          js/passkeys.js
      4.1 Aviso: o que é real e o que ainda é simulação local
      4.2 Formulário de login local (usuário fictício, simulado)
-     4.3 Botões de login social — Google é REAL (js/login-google.js
-         + js/login-config.js); Microsoft/Apple/Proton continuam
-         simulados
+     4.3 Botões de login social — Google, Microsoft e Apple são
+         REAIS (js/login-google.js, js/login-microsoft.js,
+         js/login-apple.js + js/login-config.js); Protonmail
+         continua simulado (sem OAuth público da Proton)
   5. .rodape            — aviso de independência do projeto
-  Login por chave de acesso e por Google são autenticação de
-  verdade (ver comentários em js/passkeys.js e js/login-google.js).
+  Login por chave de acesso, Google, Microsoft e Apple são
+  autenticação de verdade (ver comentários em js/passkeys.js,
+  js/login-google.js, js/login-microsoft.js e js/login-apple.js).
   O restante desta página continua sendo uma simulação local: nada
   é enviado a um servidor (este site não tem um).
   ================================================================
@@ -41,26 +43,33 @@
      4.3. <form id="form-entrar"> "Com nome de usuário local"
           (simulado): usuário, e-mail e senha.
      4.4. #confirmacao-entrar (hidden) — mensagem de sucesso.
-     4.5. .lista-login-social — botões de login social: Google é
-          REAL (data-login-real="google", js/login-google.js +
-          js/login-config.js); Microsoft/Apple/Protonmail continuam
-          simulados, abrindo <dialog id="dialogo-login-social">.
+     4.5. .lista-login-social — botões de login social: Google
+          (js/login-google.js), Microsoft (js/login-microsoft.js,
+          via MSAL.js) e Apple (js/login-apple.js, via Sign in with
+          Apple JS + verificação própria de assinatura JWKS) são
+          REAIS (data-login-real + js/login-config.js preenchido);
+          Protonmail continua simulado (não existe OAuth público da
+          Proton para terceiros), abrindo <dialog
+          id="dialogo-login-social">.
      4.6. Link para conta-criar.html ("Ainda não tem uma conta?").
   5. Rodapé (parágrafo único, sem colunas) com aviso de
      independência, incluindo Google/Microsoft/Apple/Proton.
   6. <dialog id="dialogo-login-social"> explicando a simulação de
-     login social.
+     login social (só usado por Protonmail e pelos avisos de "não
+     configurado" de Google/Microsoft/Apple).
   7. Scripts finais: js/estado.js, js/dialogos.js,
      js/autocompletar.js, js/passkeys.js, js/login-config.js,
-     js/login-google.js, js/login-real.js e js/conta.js.
+     js/login-google.js, js/login-microsoft.js, js/login-apple.js,
+     js/login-real.js e js/conta.js.
 -->
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <title>Entrar — TriânguloLeaks</title>
+<meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Entrar na TriânguloLeaks com chave de acesso (Passkey), Google, ou um login local simulado.">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://*.googleusercontent.com; style-src 'self' 'unsafe-inline'; script-src 'self' https://accounts.google.com; connect-src 'self' https://oauth2.googleapis.com; frame-src https://accounts.google.com">
+<meta name="description" content="Entrar na TriânguloLeaks com chave de acesso (Passkey), Google, Microsoft, Apple ou um login local simulado.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://*.googleusercontent.com; style-src 'self' 'unsafe-inline'; script-src 'self' https://accounts.google.com https://alcdn.msauth.net https://appleid.cdn-apple.com; connect-src 'self' https://oauth2.googleapis.com https://login.microsoftonline.com https://appleid.apple.com; frame-src https://accounts.google.com; form-action 'self'; base-uri 'none'; object-src 'none'">
 <link rel="canonical" href="conta-entrar.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/tokens.css">
@@ -107,10 +116,12 @@
 
   <!-- ---- 4.1 Aviso: o que é real e o que ainda é local/simulado ---- -->
   <p class="aviso-simulacao">
-    <strong>Entrar com chave de acesso</strong> (abaixo) e <strong>Entrar com Google</strong> são
-    autenticação de verdade. Já o formulário "Com nome de usuário local" e os botões
-    Microsoft/Apple/Protonmail continuam sendo uma simulação local — nada é enviado a um servidor
-    ou a esses serviços; apenas o nome escolhido é guardado neste navegador.
+    <strong>Entrar com chave de acesso</strong> (abaixo), <strong>Google</strong>, <strong>Microsoft</strong>
+    e <strong>Apple</strong> são autenticação de verdade — quando configuradas pelo administrador do
+    site (ver js/login-config.js); sem configuração, o botão avisa claramente em vez de fingir um
+    login. Já o formulário "Com nome de usuário local" e o botão <strong>Protonmail</strong> continuam
+    sendo uma simulação local — nada é enviado a um servidor ou a esses serviços; apenas o nome
+    escolhido é guardado neste navegador.
   </p>
 
   <!-- ---- Login por chave de acesso (Passkey/WebAuthn) — REAL ---- -->
@@ -167,13 +178,13 @@
       <span class="icone-social icone-social--google" aria-hidden="true">G</span>
       Continuar com Google
     </button>
-    <button type="button" class="botao-social" data-provedor="Microsoft">
+    <button type="button" class="botao-social" data-provedor="Microsoft" data-login-real="microsoft" id="botao-login-microsoft">
       <span class="icone-social icone-social--microsoft" aria-hidden="true">
         <svg viewBox="0 0 20 20" width="16" height="16"><rect x="1" y="1" width="8" height="8" fill="#f35325"/><rect x="11" y="1" width="8" height="8" fill="#81bc06"/><rect x="1" y="11" width="8" height="8" fill="#05a6f0"/><rect x="11" y="11" width="8" height="8" fill="#ffba08"/></svg>
       </span>
       Continuar com Microsoft (Outlook)
     </button>
-    <button type="button" class="botao-social" data-provedor="Apple">
+    <button type="button" class="botao-social" data-provedor="Apple" data-login-real="apple" id="botao-login-apple">
       <span class="icone-social icone-social--apple" aria-hidden="true"></span>
       Continuar com Apple
     </button>
@@ -212,7 +223,11 @@
 <script src="js/passkeys.js" defer></script>
 <script src="js/login-config.js" defer></script>
 <script src="js/login-google.js" defer></script>
+<script src="js/login-microsoft.js" defer></script>
+<script src="js/login-apple.js" defer></script>
 <script src="js/login-real.js" defer></script>
 <script src="js/conta.js" defer></script>
+<script src="js/recolher.js" defer></script>
+<script src="js/aprendizado.js" defer></script>
 </body>
 </html>
