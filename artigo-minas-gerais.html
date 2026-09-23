@@ -46,9 +46,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Minas Gerais — TriânguloLeaks</title>
+<meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Minas Gerais, o estado brasileiro onde se localiza o Triângulo Mineiro, sua geografia, economia e história.">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; frame-src https://www.google.com">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; frame-src https://www.google.com; form-action 'self'; base-uri 'none'; object-src 'none'">
 <link rel="canonical" href="artigo-minas-gerais.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/tokens.css">
@@ -68,6 +69,7 @@
       <li><a href="especial-mudancas-recentes.html">Mudanças recentes</a></li>
       <li><a href="especial-mais-visitados.html">Mais visitados</a></li>
       <li><a href="especial-linha-do-tempo.html">Linha do tempo</a></li>
+      <li><a href="especial-genealogia.html">Genealogia</a></li>
       <li><a href="conta-contribuicoes.html">Contribuições</a></li>
     </ul>
     <ul data-tp-area-conta>
@@ -154,7 +156,7 @@
 
     <details open id="historia">
       <summary><div class="titulo-secao"><h2>História <a class="link-editar-secao" href="editar.html?p=minas-gerais&amp;secao=historia">[editar]</a></h2></div></summary>
-      <section><p>A colonização de Minas Gerais está diretamente ligada ao ciclo do ouro dos séculos XVII e XVIII, quando bandeirantes descobriram jazidas auríferas na região central do futuro estado, dando origem a cidades históricas como Ouro Preto (antiga capital) e Mariana. O declínio da mineração de ouro no final do século XVIII coincidiu com movimentos como a Inconfidência Mineira (1789), uma conspiração separatista reprimida pela Coroa portuguesa que se tornou um marco da memória histórica mineira. Já no século XIX e início do XX, regiões como o Triângulo Mineiro tiveram uma trajetória distinta, ligada à pecuária e, mais tarde, à cafeicultura e à expansão ferroviária.<sup class="ref"><a href="#nota-1">[1]</a></sup></p></section>
+      <section><p>A colonização de Minas Gerais está diretamente ligada ao ciclo do ouro dos séculos XVII e XVIII, quando bandeirantes descobriram jazidas auríferas na região central do futuro estado, dando origem a cidades históricas como Ouro Preto (antiga capital) e Mariana. O declínio da mineração de ouro no final do século XVIII coincidiu com movimentos como a <a href="artigo-inconfidencia-mineira.html">Inconfidência Mineira</a> (1789), uma conspiração separatista reprimida pela Coroa portuguesa que se tornou um marco da memória histórica mineira. Já no século XIX e início do XX, regiões como o Triângulo Mineiro tiveram uma trajetória distinta, ligada à pecuária e, mais tarde, à cafeicultura e à expansão ferroviária.<sup class="ref"><a href="#nota-1">[1]</a></sup></p></section>
     </details>
 
     <details open id="economia">
@@ -166,7 +168,7 @@
       <summary><div class="titulo-secao"><h2>Localização <a class="link-editar-secao" href="editar.html?p=minas-gerais&amp;secao=localizacao">[editar]</a></h2></div></summary>
       <section>
         <p>Local principal ou mencionado neste artigo: <strong>Minas Gerais, Brasil</strong>.</p>
-        <iframe src="https://www.google.com/maps?q=Minas%20Gerais%2C%20Brasil&output=embed" width="100%" height="320" style="border:1px solid var(--borda);" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa de Minas Gerais, Brasil"></iframe>
+        <iframe src="https://www.google.com/maps?q=-18.0%2C-44.0&amp;z=6&amp;output=embed" width="100%" height="320" style="border:1px solid var(--borda);" loading="lazy" referrerpolicy="no-referrer" title="Mapa de Minas Gerais, Brasil" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
       </section>
     </details>
 
@@ -203,5 +205,7 @@
 
 <script src="js/estado.js" defer></script>
 <script src="js/dialogos.js" defer></script>
+<script src="js/recolher.js" defer></script>
+<script src="js/aprendizado.js" defer></script>
 </body>
 </html>
