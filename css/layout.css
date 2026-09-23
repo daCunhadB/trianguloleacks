@@ -62,6 +62,7 @@
   .cabecalho {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 0.75rem;
     padding: 0.6rem 1rem;
     background: var(--papel);
@@ -242,4 +243,18 @@
     max-width: 78rem;
     margin: 0 auto;
   }
+}
+
+@layer layout {
+  /* 3-b. ---- Cabeçalho em telas estreitas (rodada §7-v) ----
+     Sem isto, o formulário de busca não cabia em 375 px e criava rolagem
+     horizontal na página inteira. */
+  .cabecalho search { flex: 1 1 12rem; min-width: 0; }
+  .cabecalho .busca-form { display: flex; flex-wrap: wrap; gap: 0.4rem; min-width: 0; }
+  .cabecalho .busca-form input[type="search"] { flex: 1 1 8rem; min-width: 0; }
+  @media (max-width: 560px) {
+    .cabecalho search { order: 3; flex-basis: 100%; }
+    .cabecalho .busca-form button { flex: 1 1 auto; }
+  }
+  html, body { max-width: 100%; overflow-x: hidden; }
 }

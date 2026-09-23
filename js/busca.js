@@ -287,6 +287,42 @@
       resumoStatus.textContent = correspondencias.length + " resultado(s) encontrado(s).";
     }
 
+    /* Aprendizado local (js/aprendizado.js): reordena os resultados pela
+       afinidade calculada NESTE navegador — categorias, temas e locais
+       que esta pessoa já leu. Sem perfil gravado, a ordem não muda.
+       Nenhum dado sai do dispositivo. */
+    var aprendeu = false;
+    if (window.TP_APRENDIZADO) {
+      window.TP_APRENDIZADO.registrarBusca(termoBruto);
+      Object.keys(filtros).forEach(function (campo) {
+        if (typeof filtros[campo] === "string" && filtros[campo]) {
+          window.TP_APRENDIZADO.registrarFiltro(campo, filtros[campo]);
+        }
+      });
+      var perfilLocal = window.TP_APRENDIZADO.perfil();
+      if (perfilLocal.total > 0) {
+        aprendeu = true;
+        var ordemOriginal = {};
+        correspondencias.forEach(function (i, pos) { ordemOriginal[i.slug] = pos; });
+        correspondencias = correspondencias.slice().sort(function (a, b) {
+          var na = window.TP_APRENDIZADO.pontuar(a, perfilLocal);
+          var nb = window.TP_APRENDIZADO.pontuar(b, perfilLocal);
+          if (nb !== na) return nb - na;
+          return ordemOriginal[a.slug] - ordemOriginal[b.slug];
+        });
+        var aviso = document.createElement("p");
+        aviso.style.fontSize = "0.85rem";
+        aviso.style.color = "var(--tinta-suave)";
+        aviso.appendChild(document.createTextNode(
+          "Ordenado pelo que você já leu neste navegador (cálculo local). "));
+        var linkPriv = document.createElement("a");
+        linkPriv.href = "projeto-privacidade.html#aprendizado";
+        linkPriv.textContent = "Como isso funciona e como apagar";
+        aviso.appendChild(linkPriv);
+        lista.appendChild(aviso);
+      }
+    }
+
     /* Envia os slugs com data (anoInicio) dos resultados atuais para a
        Especial:Linha do tempo (ver js/linha-do-tempo.js), que soma essa
        lista à seleção já existente ao carregar. */
@@ -312,6 +348,9 @@
       var a = document.createElement("a");
       a.href = item.href;
       a.textContent = item.titulo;
+      a.addEventListener("click", function () {
+        if (window.TP_APRENDIZADO) window.TP_APRENDIZADO.registrarClique(item.slug);
+      });
       li.appendChild(a);
       var p = document.createElement("p");
       p.style.margin = "0.2rem 0 0.2rem";

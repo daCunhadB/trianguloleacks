@@ -45,14 +45,23 @@
    4. salvarSelecionados(lista)      → escrita da seleção no localStorage
    5. corPara(slug, selecionados)    → cor estável para um slug
       já selecionado
-   6. itensComData()                 → subconjunto de TP_INDICE com
+   6. hexParaRgba(hex, alfa)         → converte uma cor #rrggbb da
+      PALETA para "rgba(...)" com transparência, usada nas faixas de
+      fundo e grades que reforçam a continuidade visual de cada linha
+   7. calcularTicks(anoMin, anoMax)  → escolhe um "passo" arredondado
+      (1/2/5/10/20/25/50/100/200/500 anos) e devolve de 3 a 7 marcas
+      de ano igualmente espaçadas, usadas tanto no eixo quanto nas
+      linhas-guia verticais atrás das trilhas
+   8. itensComData()                 → subconjunto de TP_INDICE com
       anoInicio definido
-   7. normalizar(texto)              → minúsculas e sem acentos, para
+   9. normalizar(texto)              → minúsculas e sem acentos, para
       o filtro por texto
-   8. (DOMContentLoaded)             → resolve elementos da página,
+   10. (DOMContentLoaded)            → resolve elementos da página,
       importa seleção pendente vinda de busca.html, define
       redesenhar() (função central: filtra, ordena e desenha a lista
-      de seleção e a linha do tempo) e liga filtro/checkboxes/limpar
+      de seleção e a linha do tempo, com grade de anos e trilhas
+      zebradas para maior visibilidade/continuidade) e liga
+      filtro/checkboxes/limpar
    ============================================================ */
 (function () {
   "use strict";
@@ -94,7 +103,59 @@
     return PALETA[indice % PALETA.length];
   }
 
-  // 6. Subconjunto de TP_INDICE com anoInicio definido
+  // 6. Converte uma cor "#rrggbb" da PALETA para "rgba(r,g,b,alfa)"
+  function hexParaRgba(hex, alfa) {
+    var limpo = String(hex || "#999999").replace("#", "");
+    var r = parseInt(limpo.substring(0, 2), 16);
+    var g = parseInt(limpo.substring(2, 4), 16);
+    var b = parseInt(limpo.substring(4, 6), 16);
+    return "rgba(" + r + "," + g + "," + b + "," + alfa + ")";
+  }
+
+  // 7. Escolhe um passo "redondo" de anos e devolve as marcas (ticks)
+  //    igualmente espaçadas entre anoMin e anoMax — usadas no eixo E
+  //    nas linhas-guia verticais atrás das trilhas, para que dê para
+  //    seguir visualmente um mesmo ano ao longo de todas as linhas.
+  //    anoMin/anoMax sempre aparecem (são o início/fim reais da
+  //    seleção), mas uma marca "redonda" vizinha demais de um dos
+  //    dois é descartada para os rótulos não ficarem colados/
+  //    ilegíveis (ex.: "1950" colado em "1963").
+  function calcularTicks(anoMin, anoMax) {
+    var faixa = Math.max(anoMax - anoMin, 1);
+    var passosCandidatos = [1, 2, 5, 10, 20, 25, 50, 100, 200, 500, 1000];
+    var passo = passosCandidatos[passosCandidatos.length - 1];
+    for (var i = 0; i < passosCandidatos.length; i++) {
+      if (faixa / passosCandidatos[i] <= 6) { passo = passosCandidatos[i]; break; }
+    }
+    var inicio = Math.ceil(anoMin / passo) * passo;
+    var brutos = [anoMin, anoMax];
+    for (var ano = inicio; ano <= anoMax; ano += passo) brutos.push(ano);
+    var vistos = {};
+    var todos = brutos.filter(function (a) {
+      if (vistos[a]) return false;
+      vistos[a] = true;
+      return true;
+    }).sort(function (a, b) { return a - b; });
+
+    var MIN_GAP_PCT = 10; /* % da largura total — abaixo disso, os rótulos colam */
+    var mantidos = [todos[0]];
+    for (var j = 1; j < todos.length; j++) {
+      var ehUltimo = j === todos.length - 1;
+      var pctAtual = ((todos[j] - anoMin) / faixa) * 100;
+      var pctUltimoMantido = ((mantidos[mantidos.length - 1] - anoMin) / faixa) * 100;
+      var colide = pctAtual - pctUltimoMantido < MIN_GAP_PCT;
+      if (ehUltimo) {
+        /* o máximo real sempre aparece — se colidir, troca o vizinho */
+        if (colide && mantidos.length > 1) mantidos.pop();
+        mantidos.push(todos[j]);
+      } else if (!colide) {
+        mantidos.push(todos[j]);
+      }
+    }
+    return mantidos;
+  }
+
+  // 8. Subconjunto de TP_INDICE com anoInicio definido
   function itensComData() {
     if (!window.TP_INDICE) return [];
     return window.TP_INDICE.filter(function (item) {
@@ -102,12 +163,12 @@
     });
   }
 
-  // 7. Minúsculas e sem acentos, para o filtro de texto da lista
+  // 9. Minúsculas e sem acentos, para o filtro de texto da lista
   function normalizar(texto) {
     return String(texto || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
   }
 
-  // 8. Resolve elementos da página, importa seleção pendente de
+  // 10. Resolve elementos da página, importa seleção pendente de
   //    busca.html, define redesenhar() e liga filtro/checkboxes/limpar
   document.addEventListener("DOMContentLoaded", function () {
     var campoFiltro = document.getElementById("linha-tempo-filtro");
@@ -224,28 +285,78 @@
       if (anoMax === anoMin) anoMax = anoMin + 1; /* evita divisão por zero na escala */
       var faixaTotal = anoMax - anoMin;
 
+      /* Largura fixa das colunas de rótulo/local à esquerda e à
+         direita de cada trilha — usada tanto no layout flex de cada
+         linha quanto para alinhar a grade vertical de anos exatamente
+         sobre a área das trilhas (ver GRADE_ESQUERDA/GRADE_DIREITA). */
+      var GRADE_ESQUERDA = "11.6rem"; /* 11rem de rótulo + 0.6rem de gap */
+      var GRADE_DIREITA = "9.6rem";   /* 9rem de local + 0.6rem de gap */
+      var ticks = calcularTicks(anoMin, anoMax);
+
+      /* Envoltório único (position:relative) que segura o eixo, a
+         grade vertical de anos (atravessando TODAS as trilhas, não só
+         o eixo) e a lista de trilhas — é essa grade contínua que dá
+         a "continuidade" pedida: dá para seguir um mesmo ano com o
+         olho, descendo de linha em linha. */
+      var envoltorio = document.createElement("div");
+      envoltorio.style.position = "relative";
+
       var eixo = document.createElement("div");
       eixo.style.position = "relative";
       eixo.style.height = "1.4rem";
       eixo.style.marginBottom = "0.4rem";
-      eixo.style.borderBottom = "1px solid var(--borda)";
+      eixo.style.marginLeft = GRADE_ESQUERDA;
+      eixo.style.marginRight = GRADE_DIREITA;
+      eixo.style.borderBottom = "2px solid var(--borda)";
       eixo.style.fontSize = "0.75rem";
+      eixo.style.fontWeight = "600";
       eixo.style.color = "var(--tinta-suave)";
-      [anoMin, Math.round(anoMin + faixaTotal / 2), anoMax].forEach(function (ano, i) {
+      ticks.forEach(function (ano) {
+        var pct = ((ano - anoMin) / faixaTotal) * 100;
         var marca = document.createElement("span");
         marca.textContent = String(ano);
         marca.style.position = "absolute";
-        marca.style.left = i === 0 ? "0" : (i === 1 ? "50%" : "100%");
-        marca.style.transform = i === 1 ? "translateX(-50%)" : (i === 2 ? "translateX(-100%)" : "none");
+        marca.style.left = pct + "%";
+        marca.style.bottom = "0.1rem";
+        marca.style.transform =
+          pct <= 1 ? "translateX(0)" : (pct >= 99 ? "translateX(-100%)" : "translateX(-50%)");
         eixo.appendChild(marca);
       });
-      areaTimeline.appendChild(eixo);
+      envoltorio.appendChild(eixo);
 
       var trilhas = document.createElement("div");
       trilhas.setAttribute("role", "list");
       trilhas.setAttribute("aria-label", "Linha do tempo dos artigos selecionados");
+      trilhas.style.position = "relative";
 
-      itensSelecionados.forEach(function (item) {
+      /* Grade vertical: uma linha guia fina para cada marca de ano do
+         eixo, esticada por trás de TODAS as trilhas (top:0/bottom:0
+         dentro de "trilhas", que tem altura automática) — assim a
+         posição de cada barra pode ser conferida contra o eixo em
+         qualquer linha, não só na primeira. */
+      var grade = document.createElement("div");
+      grade.setAttribute("aria-hidden", "true");
+      grade.style.position = "absolute";
+      grade.style.top = "0";
+      grade.style.bottom = "0";
+      grade.style.left = GRADE_ESQUERDA;
+      grade.style.right = GRADE_DIREITA;
+      grade.style.pointerEvents = "none";
+      ticks.forEach(function (ano) {
+        var pct = ((ano - anoMin) / faixaTotal) * 100;
+        var linhaGuia = document.createElement("div");
+        linhaGuia.style.position = "absolute";
+        linhaGuia.style.top = "0";
+        linhaGuia.style.bottom = "0";
+        linhaGuia.style.left = pct + "%";
+        linhaGuia.style.width = "1px";
+        linhaGuia.style.background = "var(--borda)";
+        linhaGuia.style.opacity = "0.6";
+        grade.appendChild(linhaGuia);
+      });
+      trilhas.appendChild(grade);
+
+      itensSelecionados.forEach(function (item, indice) {
         var cor = corPara(item.slug, selecionados);
         var inicio = item.anoInicio;
         var fim = item.anoFim || item.anoInicio;
@@ -254,10 +365,17 @@
 
         var linha = document.createElement("div");
         linha.setAttribute("role", "listitem");
+        linha.style.position = "relative";
         linha.style.display = "flex";
         linha.style.alignItems = "center";
         linha.style.gap = "0.6rem";
-        linha.style.margin = "0.3rem 0";
+        linha.style.padding = "0.35rem 0";
+        linha.style.borderBottom = "1px solid var(--borda)";
+        /* Faixa de fundo bem clara, na mesma cor da barra/rótulo desta
+           linha — reforça de relance qual trilha pertence a qual item
+           ao descer pela lista, e zebra alternada (par/ímpar) ajuda a
+           não "perder a linha" em seleções longas. */
+        linha.style.background = indice % 2 === 0 ? hexParaRgba(cor, 0.05) : hexParaRgba(cor, 0.1);
 
         var rotulo = document.createElement("div");
         rotulo.style.width = "11rem";
@@ -278,8 +396,9 @@
         var trilha = document.createElement("div");
         trilha.style.position = "relative";
         trilha.style.flex = "1 1 auto";
-        trilha.style.height = "1.4rem";
+        trilha.style.height = "1.6rem";
         trilha.style.background = "var(--papel-3)";
+        trilha.style.border = "1px solid " + hexParaRgba(cor, 0.35);
         trilha.style.borderRadius = "3px";
 
         var barra = document.createElement("a");
@@ -291,9 +410,10 @@
         barra.style.width = larguraPct + "%";
         barra.style.height = "100%";
         barra.style.background = cor;
-        barra.style.borderRadius = "3px";
+        barra.style.borderRadius = "2px";
         barra.style.display = "block";
         barra.style.minWidth = "6px";
+        barra.style.boxShadow = "0 0 0 1px " + hexParaRgba("#000000", 0.08) + " inset";
         var periodoTexto = fim !== inicio ? (inicio + "–" + fim) : String(inicio);
         barra.title = item.titulo + " · " + periodoTexto + (item.local ? " · " + item.local : "");
         trilha.appendChild(barra);
@@ -314,7 +434,8 @@
         trilhas.appendChild(linha);
       });
 
-      areaTimeline.appendChild(trilhas);
+      envoltorio.appendChild(trilhas);
+      areaTimeline.appendChild(envoltorio);
     }
 
     if (campoFiltro) campoFiltro.addEventListener("input", redesenhar);

@@ -951,3 +951,98 @@
 @view-transition {
   navigation: auto;
 }
+
+@layer componentes {
+  /* 34. ---- Recolher/expandir (js/recolher.js) ----
+     Todo elemento que pode cobrir ou espremer o texto durante a rolagem
+     (ficha lateral/infobox, imagens flutuantes, sumário fixo e o
+     cabeçalho fixo do topo) ganha um botão de recolher. A classe
+     .sem-flutuar é aplicada pelo próprio JS quando ele detecta, durante
+     a rolagem, que o elemento estaria de fato sobrepondo um parágrafo. */
+  .botao-recolher {
+    position: absolute;
+    top: 0.25rem;
+    inset-inline-end: 0.25rem;
+    z-index: 2;
+    width: 1.6rem;
+    height: 1.6rem;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--borda);
+    border-radius: 3px;
+    background: var(--papel);
+    color: var(--tinta);
+    cursor: pointer;
+    line-height: 1;
+  }
+  .botao-recolher:hover { background: var(--papel-3); }
+  .botao-recolher:focus-visible { outline: 2px solid var(--anil); outline-offset: 2px; }
+  .botao-recolher-icone::before { content: "–"; font-weight: 700; }
+  .botao-recolher[aria-expanded="false"] .botao-recolher-icone::before { content: "+"; }
+
+  .recolhivel { position: relative; }
+  /* O botão fica no canto superior direito: o título precisa de folga
+     para não passar por baixo dele. */
+  .infobox-envoltorio > table.infobox caption,
+  figure.miniatura.recolhivel figcaption:first-of-type,
+  #sumario.recolhivel > details > summary { padding-inline-end: 2rem; }
+
+  /* Infobox: envolvida por um contêiner para poder receber o botão. */
+  .infobox-envoltorio {
+    float: right;
+    width: 17rem;
+    max-width: 100%;
+    margin: 0 0 1rem 1.25rem;
+  }
+  .infobox-envoltorio > table.infobox { float: none; width: 100%; margin: 0; table-layout: fixed; max-width: 100%; }
+  .infobox-envoltorio > table.infobox img,
+  .infobox-envoltorio > table.infobox svg { max-width: 100%; height: auto; }
+  .infobox-envoltorio.recolhido > table.infobox tr:not(:first-child) { display: none; }
+  .infobox-envoltorio.recolhido > table.infobox .infobox-imagem { display: none; }
+  .infobox-envoltorio.recolhido { width: 12rem; }
+
+  figure.miniatura.recolhido > :not(.botao-recolher):not(figcaption) { display: none; }
+  figure.miniatura.recolhido { max-width: 12rem; }
+
+  #sumario.recolhido > :not(.botao-recolher) { display: none; }
+
+  /* Deixar de flutuar (decidido em tempo de rolagem pelo JS). */
+  .sem-flutuar,
+  .infobox-envoltorio.sem-flutuar,
+  figure.miniatura.sem-flutuar {
+    float: none !important;
+    margin-inline: 0 !important;
+    width: auto;
+    max-width: 100%;
+  }
+
+  /* Cabeçalho fixo recolhido: vira uma faixa fina, sem cobrir o texto. */
+  body.cabecalho-recolhido header.cabecalho {
+    padding-block: 0.15rem;
+    gap: 0.4rem;
+  }
+  body.cabecalho-recolhido header.cabecalho .nome-projeto,
+  body.cabecalho-recolhido header.cabecalho search,
+  body.cabecalho-recolhido header.cabecalho .botao-tema { display: none; }
+  .botao-recolher-cabecalho { position: static; margin-inline-start: auto; }
+
+  /* Âncoras não podem ficar escondidas atrás do cabeçalho fixo. */
+  .conteudo-principal :is(h1, h2, h3, [id]) { scroll-margin-top: calc(var(--altura-topo, 3.5rem) + 1rem); }
+
+  /* Palavras muito longas (URLs, nomes compostos) não furam a caixa. */
+  .conteudo-principal p, .conteudo-principal li, .infobox td, .infobox th { overflow-wrap: anywhere; }
+
+  /* Uma seção nunca começa "dentro" de uma figura flutuante anterior. */
+  .conteudo-principal > details > section::after { content: ""; display: block; clear: both; }
+
+  @media (max-width: 720px) {
+    .infobox-envoltorio { float: none; width: 100%; margin-inline: 0; }
+    figure.miniatura.direita, figure.miniatura.esquerda { float: none; margin-inline: 0; max-width: 100%; }
+  }
+
+  @media print {
+    .botao-recolher { display: none; }
+    .recolhido > * { display: revert !important; }
+  }
+}
