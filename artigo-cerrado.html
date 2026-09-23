@@ -46,9 +46,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Cerrado — TriânguloLeaks</title>
+<meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="O Cerrado, bioma predominante no Triângulo Mineiro e no Alto Paranaíba, sua flora, fauna e a expansão agrícola sobre suas terras.">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; frame-src https://www.google.com">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://commons.wikimedia.org; style-src 'self' 'unsafe-inline'; script-src 'self'; frame-src https://www.google.com; form-action 'self'; base-uri 'none'; object-src 'none'">
 <link rel="canonical" href="artigo-cerrado.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/tokens.css">
@@ -68,6 +69,7 @@
       <li><a href="especial-mudancas-recentes.html">Mudanças recentes</a></li>
       <li><a href="especial-mais-visitados.html">Mais visitados</a></li>
       <li><a href="especial-linha-do-tempo.html">Linha do tempo</a></li>
+      <li><a href="especial-genealogia.html">Genealogia</a></li>
       <li><a href="conta-contribuicoes.html">Contribuições</a></li>
     </ul>
     <ul data-tp-area-conta>
@@ -120,14 +122,16 @@
     <table class="infobox">
       <caption>Cerrado</caption>
       <tr><td class="infobox-imagem">
-        <svg viewBox="0 0 200 140" role="img" aria-label="Ilustração esquemática de vegetação de cerrado (bioma)">
-          <rect width="200" height="140" fill="var(--papel-3)"></rect>
-          <rect y="100" width="200" height="40" fill="#9c7a3d" opacity="0.5"></rect>
-          <line x1="100" y1="60" x2="100" y2="110" stroke="var(--tinta-suave)" stroke-width="5"></line>
-          <circle cx="100" cy="45" r="38" fill="#9c7a3d"></circle>
-          <circle cx="70" cy="60" r="22" fill="#9c7a3d"></circle>
-          <circle cx="130" cy="60" r="22" fill="#9c7a3d"></circle>
-        </svg>
+        <figure class="miniatura" style="margin:0;">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cerrado%20-%20Parque%20Nacional%20Chapada%20dos%20veadeiros.jpg?width=280"
+               width="280" height="210" loading="lazy" decoding="async"
+               alt="Vegetação típica do bioma cerrado, no Parque Nacional da Chapada dos Veadeiros">
+          <figcaption style="font-size:0.75rem;">Vegetação de cerrado, Parque Nacional da Chapada dos Veadeiros (GO).</figcaption>
+          <p class="credito-imagem" style="font-size:0.7rem;"><span class="selo-licenca">CC BY-SA</span> Foto de terceiros, via
+            <a href="https://commons.wikimedia.org/wiki/File:Cerrado_-_Parque_Nacional_Chapada_dos_veadeiros.jpg" rel="noopener noreferrer">Wikimedia Commons</a>
+            — consulte a página do arquivo para o nome do autor e a versão exata da licença antes de reutilizar.
+            <a href="ajuda-licenciamento-imagens.html">Sobre o licenciamento</a>.</p>
+        </figure>
       </td></tr>
       <tr><th class="infobox-secao" colspan="2">Resumo</th></tr>
       <tr><td colspan="2">Segundo maior bioma do Brasil, uma savana tropical de vegetação característica, predominante no Triângulo Mineiro e no Alto Paranaíba.</td></tr>
@@ -167,7 +171,7 @@
       <summary><div class="titulo-secao"><h2>Localização <a class="link-editar-secao" href="editar.html?p=cerrado&amp;secao=localizacao">[editar]</a></h2></div></summary>
       <section>
         <p>Local principal ou mencionado neste artigo: <strong>Triângulo Mineiro, Minas Gerais</strong>.</p>
-        <iframe src="https://www.google.com/maps?q=Tri%C3%A2ngulo%20Mineiro%2C%20Minas%20Gerais&output=embed" width="100%" height="320" style="border:1px solid var(--borda);" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa de Triângulo Mineiro, Minas Gerais"></iframe>
+        <iframe src="https://www.google.com/maps?q=-19.1822%2C-48.2572&amp;z=6&amp;output=embed" width="100%" height="320" style="border:1px solid var(--borda);" loading="lazy" referrerpolicy="no-referrer" title="Mapa de Triângulo Mineiro, Minas Gerais" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
       </section>
     </details>
 
@@ -202,5 +206,7 @@
 
 <script src="js/estado.js" defer></script>
 <script src="js/dialogos.js" defer></script>
+<script src="js/recolher.js" defer></script>
+<script src="js/aprendizado.js" defer></script>
 </body>
 </html>
