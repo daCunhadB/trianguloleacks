@@ -121,6 +121,7 @@
       return false;
     }
     if (filtros.local && !contemNormalizado(item.local, filtros.local)) return false;
+    if (filtros.imagem && (window.TP_SLUGS_COM_IMAGEM || []).includes(item.slug) !== (filtros.imagem === "com")) return false;
     if (filtros.categoria && !(item.categorias || []).some(function (c) { return normalizar(c) === filtros.categoria; })) return false;
     if (filtros.nome && !(item.pessoa && contemNormalizado(item.pessoa.nome, filtros.nome))) return false;
     if (filtros.sobrenome && !(item.pessoa && contemNormalizado(item.pessoa.sobrenome, filtros.sobrenome))) return false;
@@ -175,6 +176,7 @@
     var paiBruto = (params.get("pai") || "").trim();
     var maeBruto = (params.get("mae") || "").trim();
     var conjugeBruto = (params.get("conjuge") || "").trim();
+    var imagemBruto = (params.get("imagem") || "").trim();
 
     /* Preenche tanto a busca rápida do cabeçalho quanto o formulário
        avançado, para a URL atual continuar refletida nos campos. */
@@ -186,7 +188,7 @@
       "av-ano-fim": anoFimBruto || "", "av-palavras": palavrasBruto,
       "av-sexo": sexoBruto, "av-local-nascimento": localNascimentoBruto,
       "av-local-falecimento": localFalecimentoBruto, "av-pai": paiBruto,
-      "av-mae": maeBruto, "av-conjuge": conjugeBruto
+      "av-mae": maeBruto, "av-conjuge": conjugeBruto, "av-imagem": imagemBruto
     };
     Object.keys(mapaCampos).forEach(function (id) {
       var el = document.getElementById(id);
@@ -227,12 +229,12 @@
       sexo: normalizar(sexoBruto), sexoOriginal: sexoBruto,
       localNascimento: normalizar(localNascimentoBruto),
       localFalecimento: normalizar(localFalecimentoBruto),
-      pai: normalizar(paiBruto), mae: normalizar(maeBruto), conjuge: normalizar(conjugeBruto)
+      pai: normalizar(paiBruto), mae: normalizar(maeBruto), conjuge: normalizar(conjugeBruto), imagem: imagemBruto
     };
 
     var algumFiltroPreenchido = !!(filtros.termo || filtros.local || filtros.categoria || filtros.nome ||
       filtros.sobrenome || filtros.anoInicio !== null || filtros.anoFim !== null || filtros.palavras.length > 0 ||
-      filtros.sexo || filtros.localNascimento || filtros.localFalecimento || filtros.pai || filtros.mae || filtros.conjuge);
+      filtros.sexo || filtros.localNascimento || filtros.localFalecimento || filtros.pai || filtros.mae || filtros.conjuge || filtros.imagem);
 
     if (!algumFiltroPreenchido) {
       if (resumoStatus) resumoStatus.textContent = "Digite um termo ou use a busca avançada para pesquisar.";
