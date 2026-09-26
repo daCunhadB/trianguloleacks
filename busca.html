@@ -49,7 +49,7 @@
 <title>Pesquisar — TriânguloLeaks</title>
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; form-action 'self'; base-uri 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; frame-src 'self' https://www.google.com; style-src 'self' 'unsafe-inline'; script-src 'self'; form-action 'self'; base-uri 'none'; object-src 'none'">
 <link rel="canonical" href="busca.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/tokens.css">
@@ -110,7 +110,7 @@
 </header>
 
 <div class="corpo envolucro-largo">
-  <aside class="lateral lateral-desktop"><details open><summary>Navegação</summary><ul><li><a href="index.html">Página principal</a></li><li><a href="especial-todas-as-paginas.html">Todas as páginas (A–Z)</a></li></ul></details></aside>
+  <aside class="lateral lateral-desktop"><details open><summary>Navegação</summary><ul><li><a href="index.html">Página principal</a></li><li><a href="especial-todas-as-paginas.html">Todas as páginas (A–Z)</a></li><li><a href="banco-de-imagens.html">Banco de imagens</a></li></ul></details></aside>
   <details class="menu-mobile"><summary>Menu</summary><aside class="lateral"><ul><li><a href="index.html">Página principal</a></li></ul></aside></details>
 
   <main id="conteudo" class="conteudo-principal">
@@ -153,6 +153,14 @@
           <div class="campo campo-largo">
             <label for="av-palavras">Palavras-chave (separadas por vírgula)</label>
             <input type="text" id="av-palavras" name="palavras" placeholder="ex.: zebu, ferrovia">
+          </div>
+          <div class="campo">
+            <label for="av-imagem">Imagem no artigo</label>
+            <select id="av-imagem" name="imagem">
+              <option value="">Todos os artigos</option>
+              <option value="com">Com imagem</option>
+              <option value="sem">Sem imagem</option>
+            </select>
           </div>
           <div class="campo">
             <label for="av-categoria">Categoria</label>
